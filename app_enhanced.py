@@ -48,39 +48,74 @@ st.markdown("""
         max-width: 1200px;
     }
     
-    /* Enhanced Tonkin Brand Colors - Better Contrast & Readability */
+    /* High Contrast Colors - Much Easier to See */
     :root {
-        --tonkin-primary: #1e3a8a;      /* Rich blue - easier to read */
-        --tonkin-secondary: #3b82f6;     /* Bright blue - good contrast */
-        --tonkin-accent: #f59e0b;        /* Warm amber - better than orange */
-        --tonkin-background: #f8fafc;    /* Soft white background */
-        --tonkin-surface: #ffffff;       /* Pure white cards */
-        --tonkin-gray-light: #f1f5f9;    /* Light gray borders */
-        --tonkin-gray-medium: #64748b;   /* Medium gray text */
-        --tonkin-gray-dark: #1e293b;     /* Dark gray headings */
-        --tonkin-success: #059669;       /* Emerald green */
-        --tonkin-warning: #d97706;       /* Amber warning */
-        --tonkin-error: #dc2626;         /* Red error */
-        --tonkin-shadow: rgba(0, 0, 0, 0.1);
-        --tonkin-shadow-lg: rgba(0, 0, 0, 0.15);
+        --tonkin-primary: #0066cc;       /* Bright blue - high contrast */
+        --tonkin-secondary: #0052a3;     /* Darker blue for depth */
+        --tonkin-accent: #ff6b35;        /* Bright orange - very visible */
+        --tonkin-background: #ffffff;    /* Pure white background */
+        --tonkin-surface: #f8f9fa;       /* Light gray cards */
+        --tonkin-gray-light: #e9ecef;    /* Visible light gray */
+        --tonkin-gray-medium: #495057;   /* Strong medium gray */
+        --tonkin-gray-dark: #212529;     /* Dark gray - high contrast */
+        --tonkin-success: #28a745;       /* Bright green */
+        --tonkin-warning: #ffc107;       /* Bright yellow */
+        --tonkin-error: #dc3545;         /* Bright red */
+        --tonkin-shadow: rgba(0, 0, 0, 0.2);
+        --tonkin-shadow-lg: rgba(0, 0, 0, 0.3);
+        
+        /* Button specific colors */
+        --button-blue: #007bff;          /* Bright button blue */
+        --button-blue-hover: #0056b3;    /* Darker on hover */
+        --button-green: #28a745;         /* Bright green */
+        --button-green-hover: #218838;   /* Darker green */
+        --button-orange: #fd7e14;        /* Bright orange */
+        --button-orange-hover: #e55100;  /* Darker orange */
+        --button-gray: #6c757d;          /* Visible gray */
+        --button-gray-hover: #545b62;    /* Darker gray */
     }
     
-    /* Global Typography & Background */
+    /* Global Typography & Background - High Contrast */
     .stApp {
         font-family: 'Inter', sans-serif;
-        background: linear-gradient(135deg, var(--tonkin-background) 0%, #e2e8f0 100%);
+        background: var(--tonkin-background);
         color: var(--tonkin-gray-dark);
     }
     
-    /* Better text readability */
+    /* High contrast text */
     .stApp h1, .stApp h2, .stApp h3 {
         color: var(--tonkin-gray-dark);
-        font-weight: 600;
+        font-weight: 700;
     }
     
     .stApp p, .stApp div {
-        color: var(--tonkin-gray-medium);
+        color: var(--tonkin-gray-dark);
         line-height: 1.6;
+        font-weight: 500;
+    }
+    
+    /* Enhanced button styling */
+    .stButton > button {
+        background: linear-gradient(135deg, var(--button-blue) 0%, var(--button-blue-hover) 100%) !important;
+        color: white !important;
+        border: 2px solid var(--button-blue) !important;
+        border-radius: 8px !important;
+        padding: 12px 24px !important;
+        font-weight: 600 !important;
+        font-size: 14px !important;
+        transition: all 0.2s ease !important;
+        box-shadow: 0 4px 12px rgba(0, 123, 255, 0.3) !important;
+    }
+    
+    .stButton > button:hover {
+        background: var(--button-blue-hover) !important;
+        transform: translateY(-2px) !important;
+        box-shadow: 0 6px 20px rgba(0, 123, 255, 0.4) !important;
+        border-color: var(--button-blue-hover) !important;
+    }
+    
+    .stButton > button:active {
+        transform: translateY(0px) !important;
     }
     
     /* Header Styling - Enhanced Visual Appeal */
@@ -123,14 +158,14 @@ st.markdown("""
         opacity: 0.95;
     }
     
-    /* Enhanced Result Card - Better Visual Hierarchy */
+    /* Enhanced Result Card - High Contrast */
     .result-card {
-        border: 1px solid var(--tonkin-gray-light);
-        border-radius: 20px;
-        padding: 2rem;
-        margin: 1.5rem 0;
-        background: var(--tonkin-surface);
-        box-shadow: 0 8px 25px var(--tonkin-shadow);
+        border: 3px solid var(--tonkin-gray-light);
+        border-radius: 15px;
+        padding: 2.5rem;
+        margin: 2rem 0;
+        background: #ffffff;
+        box-shadow: 0 12px 32px var(--tonkin-shadow-lg);
         transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         position: relative;
         overflow: hidden;
@@ -149,10 +184,10 @@ st.markdown("""
     }
     
     .result-card:hover {
-        transform: translateY(-6px);
-        box-shadow: 0 20px 50px var(--tonkin-shadow-lg);
-        border-color: var(--tonkin-secondary);
-        background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+        transform: translateY(-8px);
+        box-shadow: 0 24px 60px var(--tonkin-shadow-lg);
+        border-color: var(--tonkin-primary);
+        background: #ffffff;
     }
     
     .result-card:hover::before {
@@ -181,54 +216,61 @@ st.markdown("""
         }
     }
     
-    /* Trust Badges - Enhanced Visual Design */
+    /* Trust Badges - High Contrast & Bold */
     .trust-badge {
         display: inline-flex;
         align-items: center;
-        padding: 10px 16px;
-        margin: 6px;
-        border-radius: 20px;
-        font-size: 13px;
-        font-weight: 600;
+        padding: 12px 20px;
+        margin: 8px;
+        border-radius: 8px;
+        font-size: 14px;
+        font-weight: 700;
         color: white;
         text-transform: uppercase;
-        letter-spacing: 0.3px;
+        letter-spacing: 0.5px;
         font-family: 'Inter', sans-serif;
-        box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        box-shadow: 0 6px 16px rgba(0,0,0,0.25);
         transition: all 0.2s ease;
-        border: 2px solid rgba(255, 255, 255, 0.2);
+        border: 3px solid rgba(255, 255, 255, 0.9);
     }
     
     .trust-badge:hover {
-        transform: translateY(-2px) scale(1.05);
-        box-shadow: 0 6px 20px rgba(0,0,0,0.2);
+        transform: translateY(-3px) scale(1.1);
+        box-shadow: 0 8px 25px rgba(0,0,0,0.35);
     }
     
     .badge-green { 
-        background: linear-gradient(135deg, var(--tonkin-success) 0%, #10b981 100%);
-        border-color: rgba(255, 255, 255, 0.3);
+        background: var(--tonkin-success);
+        border-color: #ffffff;
+        box-shadow: 0 6px 16px rgba(40, 167, 69, 0.4);
     }
     .badge-blue { 
-        background: linear-gradient(135deg, var(--tonkin-primary) 0%, var(--tonkin-secondary) 100%);
-        border-color: rgba(255, 255, 255, 0.3);
+        background: var(--tonkin-primary);
+        border-color: #ffffff;
+        box-shadow: 0 6px 16px rgba(0, 102, 204, 0.4);
     }
     .badge-orange { 
-        background: linear-gradient(135deg, var(--tonkin-accent) 0%, #f59e0b 100%);
-        color: var(--tonkin-gray-dark);
-        border-color: rgba(0, 0, 0, 0.1);
+        background: var(--tonkin-accent);
+        color: white;
+        border-color: #ffffff;
+        box-shadow: 0 6px 16px rgba(255, 107, 53, 0.4);
     }
     .badge-purple { 
-        background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%);
-        border-color: rgba(255, 255, 255, 0.3);
+        background: #6f42c1;
+        border-color: #ffffff;
+        box-shadow: 0 6px 16px rgba(111, 66, 193, 0.4);
     }
     .badge-teal { 
-        background: linear-gradient(135deg, #14b8a6 0%, #0d9488 100%);
-        border-color: rgba(255, 255, 255, 0.3);
+        background: #17a2b8;
+        border-color: #ffffff;
+        box-shadow: 0 6px 16px rgba(23, 162, 184, 0.4);
     }
     .badge-gold { 
-        background: linear-gradient(135deg, var(--tonkin-warning) 0%, #b45309 100%);
-        color: white;
-        border-color: rgba(255, 255, 255, 0.3);
+        background: var(--tonkin-warning);
+        color: var(--tonkin-gray-dark);
+        border-color: #ffffff;
+        box-shadow: 0 6px 16px rgba(255, 193, 7, 0.4);
+        font-weight: 800;
     }
     
     /* Mobile Badge Adjustments */
@@ -261,31 +303,32 @@ st.markdown("""
         color: #1f4e79;
     }
     
-    /* Similarity Score - Enhanced Visibility */
+    /* Similarity Score - Maximum Visibility */
     .similarity-score {
-        background: linear-gradient(135deg, var(--tonkin-primary) 0%, var(--tonkin-secondary) 100%);
+        background: var(--button-blue);
         color: white;
-        padding: 12px 24px;
-        border-radius: 25px;
+        padding: 16px 28px;
+        border-radius: 10px;
         font-family: 'JetBrains Mono', monospace;
-        font-weight: 600;
-        font-size: 16px;
+        font-weight: 700;
+        font-size: 18px;
         display: inline-flex;
         align-items: center;
-        gap: 8px;
-        box-shadow: 0 6px 20px var(--tonkin-shadow-lg);
-        border: 2px solid rgba(255, 255, 255, 0.3);
+        gap: 10px;
+        box-shadow: 0 8px 24px rgba(0, 123, 255, 0.4);
+        border: 3px solid #ffffff;
         transition: all 0.2s ease;
     }
     
     .similarity-score:hover {
-        transform: scale(1.05);
-        box-shadow: 0 8px 25px rgba(30, 58, 138, 0.3);
+        transform: scale(1.1);
+        box-shadow: 0 12px 32px rgba(0, 123, 255, 0.5);
+        background: var(--button-blue-hover);
     }
     
     .similarity-score::before {
         content: '🎯';
-        font-size: 14px;
+        font-size: 16px;
     }
     
     /* Mobile Score Adjustments */
@@ -393,16 +436,17 @@ st.markdown("""
         box-shadow: 0 4px 15px rgba(31, 78, 121, 0.4);
     }
     
-    /* Project Title with Enhanced Typography */
+    /* Project Title - Maximum Contrast */
     .project-title {
         color: var(--tonkin-gray-dark);
-        font-size: 1.5rem;
-        font-weight: 700;
-        margin-bottom: 1.5rem;
-        border-left: 5px solid var(--tonkin-secondary);
-        padding-left: 1.5rem;
+        font-size: 1.6rem;
+        font-weight: 800;
+        margin-bottom: 2rem;
+        border-left: 6px solid var(--tonkin-primary);
+        padding-left: 2rem;
         position: relative;
         line-height: 1.3;
+        text-shadow: 0 1px 2px rgba(0,0,0,0.1);
     }
     
     .collaboration-indicators {
@@ -415,23 +459,24 @@ st.markdown("""
     .expert-indicator {
         display: inline-flex;
         align-items: center;
-        gap: 8px;
-        background: linear-gradient(135deg, var(--tonkin-gray-light) 0%, #e2e8f0 100%);
+        gap: 10px;
+        background: var(--tonkin-gray-light);
         color: var(--tonkin-gray-dark);
-        padding: 8px 16px;
-        border-radius: 20px;
-        font-size: 13px;
-        font-weight: 600;
-        border: 1px solid var(--tonkin-gray-light);
+        padding: 12px 20px;
+        border-radius: 8px;
+        font-size: 14px;
+        font-weight: 700;
+        border: 2px solid var(--tonkin-gray-medium);
         transition: all 0.3s ease;
-        box-shadow: 0 2px 4px var(--tonkin-shadow);
+        box-shadow: 0 4px 8px var(--tonkin-shadow);
     }
     
     .expert-indicator:hover {
-        background: linear-gradient(135deg, var(--tonkin-secondary) 0%, var(--tonkin-primary) 100%);
+        background: var(--tonkin-primary);
         color: white;
-        transform: translateY(-2px);
-        box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+        transform: translateY(-3px);
+        box-shadow: 0 6px 16px rgba(0, 102, 204, 0.4);
+        border-color: var(--tonkin-primary);
     }
     
     /* Mobile Project Title */
