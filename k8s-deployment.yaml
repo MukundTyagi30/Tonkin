@@ -1,0 +1,95 @@
+# Kubernetes Deployment for Tonkin Knowledge Finder
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: tonkin-knowledge-finder
+  labels:
+    app: tonkin-kb
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: tonkin-kb
+  template:
+    metadata:
+      labels:
+        app: tonkin-kb
+    spec:
+      containers:
+      - name: tonkin-kb
+        image: tonkin-knowledge-finder:latest
+        ports:
+        - containerPort: 8501
+        env:
+        - name: PYTHONPATH
+          value: "/app"
+        resources:
+          requests:
+            memory: "512Mi"
+            cpu: "250m"
+          limits:
+            memory: "2Gi"
+            cpu: "1000m"
+        livenessProbe:
+          httpGet:
+            path: /_stcore/health
+            port: 8501
+          initialDelaySeconds: 30
+          periodSeconds: 10
+        readinessProbe:
+          httpGet:
+            path: /_stcore/health
+            port: 8501
+          initialDelaySeconds: 5
+          periodSeconds: 5
+        volumeMounts:
+        - name: data-volume
+          mountPath: /app/data
+        - name: embeddings-volume
+          mountPath: /app/embeddings
+      volumes:
+      - name: data-volume
+        persistentVolumeClaim:
+          claimName: tonkin-data-pvc
+      - name: embeddings-volume
+        persistentVolumeClaim:
+          claimName: tonkin-embeddings-pvc
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: tonkin-kb-service
+spec:
+  selector:
+    app: tonkin-kb
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 8501
+  type: LoadBalancer
+
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: tonkin-kb-ingress
+  annotations:
+    kubernetes.io/ingress.class: "nginx"
+    cert-manager.io/cluster-issuer: "letsencrypt-prod"
+spec:
+  tls:
+  - hosts:
+    - tonkin-kb.your-domain.com
+    secretName: tonkin-kb-tls
+  rules:
+  - host: tonkin-kb.your-domain.com
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: tonkin-kb-service
+            port:
+              number: 80

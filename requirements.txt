@@ -1,0 +1,11 @@
+python-docx>=0.8.11
+sentence-transformers>=2.2.2
+faiss-cpu>=1.7.4
+streamlit>=1.28.0
+pandas>=2.0.0
+python-dateutil>=2.8.2
+rapidfuzz>=3.0.0
+sqlite3
+PyPDF2>=3.0.0
+python-magic>=0.4.27
+streamlit-option-menu>=0.3.6
