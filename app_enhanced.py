@@ -48,33 +48,53 @@ st.markdown("""
         max-width: 1200px;
     }
     
-    /* Tonkin Brand Colors */
+    /* Enhanced Tonkin Brand Colors - Better Contrast & Readability */
     :root {
-        --tonkin-blue: #003366;
-        --tonkin-light-blue: #0066cc;
-        --tonkin-accent: #ff6b35;
-        --tonkin-gray: #f5f7fa;
-        --tonkin-dark-gray: #2c3e50;
-        --tonkin-success: #27ae60;
-        --tonkin-warning: #f39c12;
+        --tonkin-primary: #1e3a8a;      /* Rich blue - easier to read */
+        --tonkin-secondary: #3b82f6;     /* Bright blue - good contrast */
+        --tonkin-accent: #f59e0b;        /* Warm amber - better than orange */
+        --tonkin-background: #f8fafc;    /* Soft white background */
+        --tonkin-surface: #ffffff;       /* Pure white cards */
+        --tonkin-gray-light: #f1f5f9;    /* Light gray borders */
+        --tonkin-gray-medium: #64748b;   /* Medium gray text */
+        --tonkin-gray-dark: #1e293b;     /* Dark gray headings */
+        --tonkin-success: #059669;       /* Emerald green */
+        --tonkin-warning: #d97706;       /* Amber warning */
+        --tonkin-error: #dc2626;         /* Red error */
+        --tonkin-shadow: rgba(0, 0, 0, 0.1);
+        --tonkin-shadow-lg: rgba(0, 0, 0, 0.15);
     }
     
-    /* Global Typography */
+    /* Global Typography & Background */
     .stApp {
         font-family: 'Inter', sans-serif;
+        background: linear-gradient(135deg, var(--tonkin-background) 0%, #e2e8f0 100%);
+        color: var(--tonkin-gray-dark);
     }
     
-    /* Header Styling - Tonkin Branding */
+    /* Better text readability */
+    .stApp h1, .stApp h2, .stApp h3 {
+        color: var(--tonkin-gray-dark);
+        font-weight: 600;
+    }
+    
+    .stApp p, .stApp div {
+        color: var(--tonkin-gray-medium);
+        line-height: 1.6;
+    }
+    
+    /* Header Styling - Enhanced Visual Appeal */
     .main-header {
-        background: linear-gradient(135deg, var(--tonkin-blue) 0%, var(--tonkin-light-blue) 100%);
-        padding: 2.5rem;
-        border-radius: 20px;
+        background: linear-gradient(135deg, var(--tonkin-primary) 0%, var(--tonkin-secondary) 100%);
+        padding: 3rem;
+        border-radius: 24px;
         margin-bottom: 2rem;
         color: white;
         text-align: center;
-        box-shadow: 0 8px 32px rgba(0, 51, 102, 0.3);
+        box-shadow: 0 20px 40px var(--tonkin-shadow-lg);
         position: relative;
         overflow: hidden;
+        border: 1px solid rgba(255, 255, 255, 0.2);
     }
     
     .main-header::before {
@@ -103,15 +123,15 @@ st.markdown("""
         opacity: 0.95;
     }
     
-    /* Enhanced Result Card - Mobile Responsive */
+    /* Enhanced Result Card - Better Visual Hierarchy */
     .result-card {
-        border: 1px solid #e1e8ed;
-        border-radius: 16px;
-        padding: 1.5rem;
-        margin: 1rem 0;
-        background: linear-gradient(135deg, #ffffff 0%, var(--tonkin-gray) 100%);
-        box-shadow: 0 4px 20px rgba(0, 51, 102, 0.08);
-        transition: all 0.3s ease;
+        border: 1px solid var(--tonkin-gray-light);
+        border-radius: 20px;
+        padding: 2rem;
+        margin: 1.5rem 0;
+        background: var(--tonkin-surface);
+        box-shadow: 0 8px 25px var(--tonkin-shadow);
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         position: relative;
         overflow: hidden;
     }
@@ -121,17 +141,18 @@ st.markdown("""
         position: absolute;
         top: 0;
         left: 0;
-        width: 4px;
+        width: 5px;
         height: 100%;
-        background: linear-gradient(to bottom, var(--tonkin-light-blue), var(--tonkin-accent));
+        background: linear-gradient(to bottom, var(--tonkin-secondary), var(--tonkin-accent));
         opacity: 0;
         transition: opacity 0.3s ease;
     }
     
     .result-card:hover {
-        transform: translateY(-4px);
-        box-shadow: 0 12px 40px rgba(0, 51, 102, 0.15);
-        border-color: var(--tonkin-light-blue);
+        transform: translateY(-6px);
+        box-shadow: 0 20px 50px var(--tonkin-shadow-lg);
+        border-color: var(--tonkin-secondary);
+        background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
     }
     
     .result-card:hover::before {
@@ -160,32 +181,55 @@ st.markdown("""
         }
     }
     
-    /* Trust Badges - Tonkin Branded */
+    /* Trust Badges - Enhanced Visual Design */
     .trust-badge {
-        display: inline-block;
-        padding: 8px 16px;
-        margin: 4px;
-        border-radius: 25px;
-        font-size: 12px;
+        display: inline-flex;
+        align-items: center;
+        padding: 10px 16px;
+        margin: 6px;
+        border-radius: 20px;
+        font-size: 13px;
         font-weight: 600;
         color: white;
         text-transform: uppercase;
-        letter-spacing: 0.5px;
+        letter-spacing: 0.3px;
         font-family: 'Inter', sans-serif;
-        box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-        transition: transform 0.2s ease;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        transition: all 0.2s ease;
+        border: 2px solid rgba(255, 255, 255, 0.2);
     }
     
     .trust-badge:hover {
-        transform: translateY(-1px);
+        transform: translateY(-2px) scale(1.05);
+        box-shadow: 0 6px 20px rgba(0,0,0,0.2);
     }
     
-    .badge-green { background: linear-gradient(45deg, var(--tonkin-success), #2ecc71); }
-    .badge-blue { background: linear-gradient(45deg, var(--tonkin-blue), var(--tonkin-light-blue)); }
-    .badge-orange { background: linear-gradient(45deg, var(--tonkin-accent), #e74c3c); }
-    .badge-purple { background: linear-gradient(45deg, #9b59b6, #8e44ad); }
-    .badge-teal { background: linear-gradient(45deg, #1abc9c, #16a085); }
-    .badge-gold { background: linear-gradient(45deg, var(--tonkin-warning), #e67e22); color: white; }
+    .badge-green { 
+        background: linear-gradient(135deg, var(--tonkin-success) 0%, #10b981 100%);
+        border-color: rgba(255, 255, 255, 0.3);
+    }
+    .badge-blue { 
+        background: linear-gradient(135deg, var(--tonkin-primary) 0%, var(--tonkin-secondary) 100%);
+        border-color: rgba(255, 255, 255, 0.3);
+    }
+    .badge-orange { 
+        background: linear-gradient(135deg, var(--tonkin-accent) 0%, #f59e0b 100%);
+        color: var(--tonkin-gray-dark);
+        border-color: rgba(0, 0, 0, 0.1);
+    }
+    .badge-purple { 
+        background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%);
+        border-color: rgba(255, 255, 255, 0.3);
+    }
+    .badge-teal { 
+        background: linear-gradient(135deg, #14b8a6 0%, #0d9488 100%);
+        border-color: rgba(255, 255, 255, 0.3);
+    }
+    .badge-gold { 
+        background: linear-gradient(135deg, var(--tonkin-warning) 0%, #b45309 100%);
+        color: white;
+        border-color: rgba(255, 255, 255, 0.3);
+    }
     
     /* Mobile Badge Adjustments */
     @media (max-width: 768px) {
@@ -217,18 +261,31 @@ st.markdown("""
         color: #1f4e79;
     }
     
-    /* Similarity Score - Tonkin Branded */
+    /* Similarity Score - Enhanced Visibility */
     .similarity-score {
-        background: linear-gradient(45deg, var(--tonkin-blue), var(--tonkin-light-blue));
+        background: linear-gradient(135deg, var(--tonkin-primary) 0%, var(--tonkin-secondary) 100%);
         color: white;
-        padding: 10px 20px;
-        border-radius: 30px;
+        padding: 12px 24px;
+        border-radius: 25px;
         font-family: 'JetBrains Mono', monospace;
-        font-weight: 500;
+        font-weight: 600;
+        font-size: 16px;
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        box-shadow: 0 6px 20px var(--tonkin-shadow-lg);
+        border: 2px solid rgba(255, 255, 255, 0.3);
+        transition: all 0.2s ease;
+    }
+    
+    .similarity-score:hover {
+        transform: scale(1.05);
+        box-shadow: 0 8px 25px rgba(30, 58, 138, 0.3);
+    }
+    
+    .similarity-score::before {
+        content: '🎯';
         font-size: 14px;
-        display: inline-block;
-        box-shadow: 0 4px 12px rgba(0, 51, 102, 0.2);
-        border: 2px solid rgba(255, 255, 255, 0.2);
     }
     
     /* Mobile Score Adjustments */
@@ -256,18 +313,19 @@ st.markdown("""
         margin-bottom: 1rem;
     }
     
-    /* Stats Cards - Tonkin Branded & Mobile Responsive */
+    /* Stats Cards - Enhanced Visual Appeal */
     .stat-card {
-        background: linear-gradient(135deg, var(--tonkin-blue) 0%, var(--tonkin-light-blue) 100%);
-        padding: 2rem;
-        border-radius: 20px;
+        background: linear-gradient(135deg, var(--tonkin-primary) 0%, var(--tonkin-secondary) 100%);
+        padding: 2.5rem;
+        border-radius: 24px;
         color: white;
         text-align: center;
-        margin-bottom: 1rem;
-        box-shadow: 0 8px 32px rgba(0, 51, 102, 0.2);
-        transition: transform 0.3s ease;
+        margin-bottom: 1.5rem;
+        box-shadow: 0 12px 40px var(--tonkin-shadow-lg);
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         position: relative;
         overflow: hidden;
+        border: 1px solid rgba(255, 255, 255, 0.2);
     }
     
     .stat-card::before {
@@ -282,7 +340,8 @@ st.markdown("""
     }
     
     .stat-card:hover {
-        transform: translateY(-2px);
+        transform: translateY(-6px) scale(1.02);
+        box-shadow: 0 20px 60px rgba(30, 58, 138, 0.25);
     }
     
     .stat-number {
@@ -334,15 +393,16 @@ st.markdown("""
         box-shadow: 0 4px 15px rgba(31, 78, 121, 0.4);
     }
     
-    /* Project Title with Collaboration */
+    /* Project Title with Enhanced Typography */
     .project-title {
-        color: var(--tonkin-blue);
-        font-size: 1.4rem;
+        color: var(--tonkin-gray-dark);
+        font-size: 1.5rem;
         font-weight: 700;
-        margin-bottom: 1rem;
-        border-left: 4px solid var(--tonkin-light-blue);
-        padding-left: 1rem;
+        margin-bottom: 1.5rem;
+        border-left: 5px solid var(--tonkin-secondary);
+        padding-left: 1.5rem;
         position: relative;
+        line-height: 1.3;
     }
     
     .collaboration-indicators {
@@ -355,21 +415,23 @@ st.markdown("""
     .expert-indicator {
         display: inline-flex;
         align-items: center;
-        gap: 6px;
-        background: linear-gradient(45deg, var(--tonkin-gray), #e9ecef);
-        color: var(--tonkin-dark-gray);
-        padding: 6px 12px;
+        gap: 8px;
+        background: linear-gradient(135deg, var(--tonkin-gray-light) 0%, #e2e8f0 100%);
+        color: var(--tonkin-gray-dark);
+        padding: 8px 16px;
         border-radius: 20px;
-        font-size: 12px;
-        font-weight: 500;
-        border: 1px solid rgba(0, 51, 102, 0.1);
-        transition: all 0.2s ease;
+        font-size: 13px;
+        font-weight: 600;
+        border: 1px solid var(--tonkin-gray-light);
+        transition: all 0.3s ease;
+        box-shadow: 0 2px 4px var(--tonkin-shadow);
     }
     
     .expert-indicator:hover {
-        background: linear-gradient(45deg, var(--tonkin-light-blue), var(--tonkin-blue));
+        background: linear-gradient(135deg, var(--tonkin-secondary) 0%, var(--tonkin-primary) 100%);
         color: white;
-        transform: translateY(-1px);
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
     }
     
     /* Mobile Project Title */
