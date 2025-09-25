@@ -1,59 +1,104 @@
-# Tonkin Knowledge Finder (SF84 MVP)
+# 🔍 Tonkin Knowledge Finder (SF84 MVP)
 
-A local, offline prototype that helps engineers find trusted past projects by searching SF84 Project Basis Reports using semantic search.
+## Overview
 
-## Features
+A local, offline prototype that enables engineers to find trusted past projects in seconds by searching SF84 Project Basis Reports using semantic search technology.
 
-- 🔍 **Semantic Search**: Find documents by meaning, not just keywords
-- 📊 **Trust Badges**: Automatic scoring based on completeness, approvals, and recency
-- 👥 **Expert Network**: Identify project leaders and reviewers
-- 💡 **Lessons Learned**: Capture and share insights from past projects
-- 📱 **Modern UI**: Clean, intuitive Streamlit interface
+## Key Features
+
+- **Semantic Search**: Find projects by meaning, not just keywords
+- **Trust Badges**: Automated quality indicators based on project metadata
+- **Expert Network**: Identify project leaders and reviewers for knowledge sharing
+- **Lesson Learned**: Capture and preserve project insights
+- **Offline Operation**: All data stays local, no cloud dependencies
+- **Tonkin Branding**: Professional UI with mobile responsiveness
+- **Team Collaboration**: Expert finder and project sharing capabilities
 
 ## Quick Start
 
-1. Install dependencies:
 ```bash
+# Install dependencies
 pip install -r requirements.txt
+
+# Run setup
+python setup.py
+
+# Start the enhanced application
+streamlit run app_enhanced.py
 ```
 
-2. Add your SF84 documents to `data/raw/`
+## Tech Stack
 
-3. Run the application:
-```bash
-streamlit run src/main.py
-```
+- **Frontend**: Streamlit with enhanced UI/UX
+- **Search Engine**: Sentence Transformers + FAISS
+- **Document Processing**: python-docx, PyMuPDF
+- **Database**: SQLite
+- **AI Models**: all-MiniLM-L6-v2
 
-4. Open your browser to the displayed URL and start searching!
+## Live Demo
+
+🚀 **Access the live application**: [Tonkin Knowledge Finder](https://tonkin.streamlit.app)
 
 ## Project Structure
 
 ```
-tonkin-prototype/
-├── data/
-│   ├── raw/          # Original SF84 .docx files
-│   └── processed/    # Parsed data and embeddings
-├── src/
-│   ├── main.py       # Streamlit app entry point
-│   ├── parser.py     # Document parsing logic
-│   ├── search.py     # Semantic search engine
-│   ├── database.py   # SQLite database operations
-│   └── utils.py      # Utility functions
-├── config/
-│   └── settings.py   # Configuration settings
-└── requirements.txt
+tonkin-knowledge-finder/
+├── app_enhanced.py    # Main Streamlit application with enhanced UI
+├── src/              # Core application logic
+├── data/             # Document storage and processed data
+├── config/           # Configuration settings
+├── ingest/           # Document ingestion scripts
+├── requirements.txt  # Python dependencies
+└── README.md         # This file
 ```
 
-## Document Support
+## Documentation
 
-Currently supports:
-- SF84 Project Basis Report (.docx)
-- Future: Risk Register, PEP, Go/No-Go documents
+- [Technical Documentation](README_TECHNICAL.md) - Detailed technical architecture
+- [Executive Overview](README_EXECUTIVE.md) - Business value and vision
+- [Deployment Guide](DEPLOYMENT_GUIDE.md) - Complete deployment options
+- [Future Roadmap](FUTURE_ROADMAP.md) - Planned enhancements and features
+- [Simple Explanation](SIMPLE_EXPLANATION.md) - Non-technical overview
 
-## Technical Details
+## Sample Data
 
-- **Embeddings**: sentence-transformers (all-MiniLM-L6-v2)
-- **Vector Search**: FAISS CPU
-- **Database**: SQLite for feedback and lessons
-- **UI**: Streamlit
-- **Platform**: Windows/Mac compatible
+The prototype includes 20+ realistic sample projects covering:
+- Stormwater management systems
+- Bridge and infrastructure projects
+- Water treatment facilities
+- Renewable energy installations
+- Industrial developments
+
+## Features Showcase
+
+### 🎨 Enhanced UI
+- Professional Tonkin branding
+- Mobile-responsive design
+- Modern typography and visual effects
+- Interactive dashboard with project analytics
+
+### 🤝 Team Collaboration
+- Expert finder by engineer name
+- Contact project leaders and reviewers
+- Project sharing capabilities
+- Quick topic search for trending areas
+
+### 🔍 Intelligent Search
+- Semantic search understanding context
+- Trust scoring based on project quality
+- Advanced filtering and sorting options
+- Highlighted search term matching
+
+### 📊 Analytics Dashboard
+- Project distribution by region and category
+- Trust score analytics
+- Search history and trending topics
+- Performance metrics
+
+## Contributing
+
+This is a prototype for Tonkin Engineering. For questions or contributions, please contact the development team.
+
+## License
+
+Private prototype for Tonkin Engineering internal use.
