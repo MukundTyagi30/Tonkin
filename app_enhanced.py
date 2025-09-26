@@ -48,141 +48,215 @@ st.markdown("""
         max-width: 1200px;
     }
     
-    /* Modern Professional Color Palette - Clean & Trustworthy */
+    /* DARK/LIGHT THEME SYSTEM - Excellent Visibility & Contrast */
     :root {
-        /* Primary Colors - Calm but Strong Blue for Trust */
-        --tonkin-primary: #2563EB;       /* Blue-600 - Professional blue */
-        --tonkin-primary-dark: #1D4ED8;  /* Blue-700 - Darker for depth */
-        --tonkin-primary-light: #3B82F6; /* Blue-500 - Lighter variant */
+        /* Theme Toggle Variables */
+        --is-dark: 0; /* 0 for light, 1 for dark */
         
-        /* Secondary/Accent Colors */
-        --tonkin-accent-orange: #F97316; /* Orange-500 - For highlights */
-        --tonkin-accent-teal: #10B981;   /* Emerald-500 - For success */
-        --tonkin-accent-amber: #FACC15;  /* Amber-400 - For warnings */
+        /* Primary Colors - Bright & Visible */
+        --primary: #3B82F6;              /* Bright blue - visible in both themes */
+        --primary-hover: #2563EB;        /* Darker blue for hover */
+        --primary-light: #60A5FA;        /* Lighter blue */
         
-        /* Neutral Backgrounds - Soft tones */
-        --tonkin-background: #F9FAFB;    /* Gray-50 - Off-white */
-        --tonkin-surface: #FFFFFF;       /* Pure white cards */
-        --tonkin-surface-hover: #F4F5F7; /* Slightly darker on hover */
+        /* Accent Colors - High contrast */
+        --accent-orange: #F97316;        /* Bright orange */
+        --accent-green: #10B981;         /* Bright green */
+        --accent-amber: #F59E0B;         /* Bright amber */
+        --accent-red: #EF4444;           /* Bright red */
         
-        /* Gray Scale - Professional neutrals */
-        --tonkin-gray-50: #F9FAFB;
-        --tonkin-gray-100: #F3F4F6;
-        --tonkin-gray-200: #E5E7EB;
-        --tonkin-gray-300: #D1D5DB;
-        --tonkin-gray-400: #9CA3AF;
-        --tonkin-gray-500: #6B7280;
-        --tonkin-gray-600: #4B5563;
-        --tonkin-gray-700: #374151;
-        --tonkin-gray-800: #1F2937;
-        --tonkin-gray-900: #111827;
+        /* Border Radius */
+        --radius-sm: 0.25rem;
+        --radius-md: 0.5rem; 
+        --radius-lg: 0.75rem;
+        --radius-xl: 1rem;
+    }
+    
+    /* LIGHT THEME - Default */
+    :root {
+        --bg-primary: #FFFFFF;           /* Pure white */
+        --bg-secondary: #F8FAFC;         /* Light gray */
+        --bg-tertiary: #F1F5F9;          /* Lighter gray */
+        --bg-sidebar: #F8FAFC;           /* Light sidebar */
+        --bg-card: #FFFFFF;              /* White cards */
+        --bg-hover: #F1F5F9;             /* Hover state */
         
-        /* Text Colors - High contrast for readability */
-        --text-primary: #111827;         /* Gray-900 - Headlines */
-        --text-secondary: #374151;       /* Gray-700 - Body text */
-        --text-tertiary: #6B7280;        /* Gray-500 - Captions */
-        --text-inverse: #FFFFFF;         /* White text on dark backgrounds */
+        --text-primary: #0F172A;         /* Dark text */
+        --text-secondary: #475569;       /* Medium text */
+        --text-tertiary: #64748B;        /* Light text */
+        --text-inverse: #FFFFFF;         /* White text */
         
-        /* Status Colors - Consistent semantic meaning */
-        --status-success: #22C55E;       /* Green-500 - High trust */
-        --status-warning: #FACC15;       /* Amber-400 - Medium */
-        --status-error: #DC2626;         /* Red-600 - Low trust/risk */
-        --status-info: #3B82F6;          /* Blue-500 - Information */
+        --border-primary: #E2E8F0;       /* Light borders */
+        --border-secondary: #CBD5E1;     /* Medium borders */
+        --border-focus: var(--primary);  /* Focus borders */
         
-        /* Badge Colors - Light backgrounds with darker text */
-        --badge-info-bg: #DBEAFE;        /* Blue-100 */
-        --badge-info-text: #1E3A8A;      /* Blue-800 */
-        --badge-success-bg: #D1FAE5;     /* Emerald-100 */
-        --badge-success-text: #064E3B;   /* Emerald-800 */
-        --badge-warning-bg: #FEF3C7;     /* Amber-100 */
-        --badge-warning-text: #92400E;   /* Amber-800 */
-        --badge-error-bg: #FEE2E2;       /* Red-100 */
-        --badge-error-text: #991B1B;     /* Red-800 */
-        
-        /* Shadows - Subtle elevation */
         --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
         --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
         --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-        --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
         
-        /* Border Radius - Modern rounded corners */
-        --radius-sm: 0.25rem;            /* 4px */
-        --radius-md: 0.375rem;           /* 6px */
-        --radius-lg: 0.5rem;             /* 8px */
-        --radius-xl: 0.75rem;            /* 12px */
-        --radius-2xl: 1rem;              /* 16px */
+        /* Badge Colors - Light Theme */
+        --badge-info-bg: #DBEAFE;
+        --badge-info-text: #1E40AF;
+        --badge-success-bg: #D1FAE5;
+        --badge-success-text: #065F46;
+        --badge-warning-bg: #FEF3C7;
+        --badge-warning-text: #92400E;
+        --badge-error-bg: #FEE2E2;
+        --badge-error-text: #991B1B;
     }
     
-    /* Global Typography & Background - Clean & Professional */
+    /* DARK THEME - When .dark-theme is applied */
+    .dark-theme {
+        --bg-primary: #0F172A;           /* Dark slate */
+        --bg-secondary: #1E293B;         /* Darker slate */
+        --bg-tertiary: #334155;          /* Medium slate */
+        --bg-sidebar: #1E293B;           /* Dark sidebar */
+        --bg-card: #1E293B;              /* Dark cards */
+        --bg-hover: #334155;             /* Dark hover */
+        
+        --text-primary: #F8FAFC;         /* Light text */
+        --text-secondary: #CBD5E1;       /* Medium light text */
+        --text-tertiary: #94A3B8;        /* Lighter text */
+        --text-inverse: #0F172A;         /* Dark text on light bg */
+        
+        --border-primary: #334155;       /* Dark borders */
+        --border-secondary: #475569;     /* Medium dark borders */
+        --border-focus: var(--primary);  /* Focus borders */
+        
+        --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.3);
+        --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.4), 0 2px 4px -1px rgba(0, 0, 0, 0.3);
+        --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.4), 0 4px 6px -2px rgba(0, 0, 0, 0.3);
+        
+        /* Badge Colors - Dark Theme */
+        --badge-info-bg: #1E3A8A;
+        --badge-info-text: #DBEAFE;
+        --badge-success-bg: #065F46;
+        --badge-success-text: #D1FAE5;
+        --badge-warning-bg: #92400E;
+        --badge-warning-text: #FEF3C7;
+        --badge-error-bg: #991B1B;
+        --badge-error-text: #FEE2E2;
+    }
+    
+    /* THEME TOGGLE BUTTON */
+    .theme-toggle {
+        position: fixed;
+        top: 1rem;
+        right: 1rem;
+        z-index: 1000;
+        background: var(--bg-card) !important;
+        border: 2px solid var(--border-primary) !important;
+        border-radius: var(--radius-lg) !important;
+        padding: 0.75rem !important;
+        box-shadow: var(--shadow-lg) !important;
+        transition: all 0.2s ease !important;
+        color: var(--text-primary) !important;
+        font-weight: 600 !important;
+        font-size: 14px !important;
+        cursor: pointer !important;
+        min-width: 120px !important;
+        text-align: center !important;
+    }
+    
+    .theme-toggle:hover {
+        background: var(--bg-hover) !important;
+        border-color: var(--primary) !important;
+        transform: translateY(-2px) !important;
+        box-shadow: var(--shadow-xl) !important;
+    }
+    
+    /* GLOBAL APP STYLING - Excellent Contrast */
     .stApp {
         font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-        background: var(--tonkin-background);
-        color: var(--text-primary);
+        background: var(--bg-primary) !important;
+        color: var(--text-primary) !important;
         font-size: 16px;
         line-height: 1.6;
+        transition: all 0.3s ease;
     }
     
-    /* Typography Hierarchy - Clear and readable */
+    /* TYPOGRAPHY - High Contrast & Clear */
     .stApp h1, .stApp h2, .stApp h3 {
-        color: var(--text-primary);
-        font-weight: 600;
+        color: var(--text-primary) !important;
+        font-weight: 700 !important;
         letter-spacing: -0.025em;
         margin-bottom: 1rem;
     }
     
-    .stApp h1 { font-size: 2.25rem; line-height: 1.2; }
-    .stApp h2 { font-size: 1.875rem; line-height: 1.3; }
-    .stApp h3 { font-size: 1.5rem; line-height: 1.4; }
+    .stApp h1 { font-size: 2.5rem !important; line-height: 1.2; }
+    .stApp h2 { font-size: 2rem !important; line-height: 1.3; }
+    .stApp h3 { font-size: 1.75rem !important; line-height: 1.4; }
     
-    .stApp p, .stApp div {
-        color: var(--text-secondary);
+    .stApp p, .stApp div, .stApp span {
+        color: var(--text-secondary) !important;
         line-height: 1.6;
-        font-weight: 400;
-    }
-    
-    /* Modern Button Styling - Professional Blue Theme */
-    .stButton > button {
-        background: var(--tonkin-primary) !important;
-        color: var(--text-inverse) !important;
-        border: 1px solid var(--tonkin-primary) !important;
-        border-radius: var(--radius-lg) !important;
-        padding: 0.75rem 1.5rem !important;
         font-weight: 500 !important;
         font-size: 16px !important;
-        transition: all 0.15s ease-in-out !important;
-        box-shadow: var(--shadow-sm) !important;
-        min-height: 44px !important;
+    }
+    
+    .stApp strong {
+        color: var(--text-primary) !important;
+        font-weight: 700 !important;
+    }
+    
+    /* BUTTONS - Super Visible & High Contrast */
+    .stButton > button {
+        background: var(--primary) !important;
+        color: var(--text-inverse) !important;
+        border: 2px solid var(--primary) !important;
+        border-radius: var(--radius-lg) !important;
+        padding: 1rem 2rem !important;
+        font-weight: 700 !important;
+        font-size: 16px !important;
+        transition: all 0.2s ease !important;
+        box-shadow: var(--shadow-md) !important;
+        min-height: 48px !important;
+        text-transform: uppercase !important;
+        letter-spacing: 0.5px !important;
     }
     
     .stButton > button:hover {
-        background: var(--tonkin-primary-dark) !important;
-        transform: translateY(-1px) !important;
-        box-shadow: var(--shadow-md) !important;
-        border-color: var(--tonkin-primary-dark) !important;
+        background: var(--primary-hover) !important;
+        transform: translateY(-2px) !important;
+        box-shadow: var(--shadow-lg) !important;
+        border-color: var(--primary-hover) !important;
     }
     
     .stButton > button:active {
         transform: translateY(0px) !important;
-        box-shadow: var(--shadow-sm) !important;
+        box-shadow: var(--shadow-md) !important;
     }
     
     .stButton > button:focus {
-        outline: 2px solid var(--tonkin-primary) !important;
+        outline: 3px solid var(--primary) !important;
         outline-offset: 2px !important;
     }
     
-    /* Modern Gradient Header - Professional Trust Banner */
+    /* HEADER - Stunning Gradient with High Contrast */
     .main-header {
-        background: linear-gradient(90deg, var(--tonkin-primary) 0%, var(--tonkin-primary-dark) 100%);
+        background: linear-gradient(135deg, var(--primary) 0%, var(--primary-hover) 100%);
         padding: 3rem 2rem;
-        border-radius: var(--radius-2xl);
+        border-radius: var(--radius-xl);
         margin-bottom: 2rem;
-        color: var(--text-inverse);
+        color: var(--text-inverse) !important;
         text-align: center;
-        box-shadow: var(--shadow-xl);
+        box-shadow: var(--shadow-lg);
         position: relative;
         overflow: hidden;
-        border: 1px solid rgba(255, 255, 255, 0.1);
+        border: 2px solid var(--border-primary);
+    }
+    
+    .main-header h1 {
+        color: var(--text-inverse) !important;
+        font-size: 3rem !important;
+        font-weight: 800 !important;
+        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    }
+    
+    .main-header p {
+        color: var(--text-inverse) !important;
+        font-size: 1.25rem !important;
+        font-weight: 500 !important;
+        opacity: 0.95;
     }
     
     .main-header::before {
@@ -211,15 +285,15 @@ st.markdown("""
         opacity: 0.95;
     }
     
-    /* Modern Result Card - Clean with Subtle Elevation */
+    /* RESULT CARDS - High Contrast & Clear Visibility */
     .result-card {
-        border: 1px solid var(--tonkin-gray-200);
+        border: 2px solid var(--border-primary);
         border-radius: var(--radius-xl);
         padding: 2rem;
         margin: 1.5rem 0;
-        background: var(--tonkin-surface);
+        background: var(--bg-card) !important;
         box-shadow: var(--shadow-md);
-        transition: all 0.2s ease-in-out;
+        transition: all 0.3s ease;
         position: relative;
         overflow: hidden;
     }
@@ -237,10 +311,10 @@ st.markdown("""
     }
     
     .result-card:hover {
-        transform: translateY(-4px);
-        box-shadow: var(--shadow-xl);
-        border-color: var(--tonkin-gray-300);
-        background: var(--tonkin-surface);
+        transform: translateY(-6px);
+        box-shadow: var(--shadow-lg);
+        border-color: var(--primary);
+        background: var(--bg-hover) !important;
     }
     
     .result-card:hover::before {
@@ -269,70 +343,58 @@ st.markdown("""
         }
     }
     
-    /* Modern Trust Badges - Pill-shaped with Semantic Colors */
+    /* TRUST BADGES - Super Visible with High Contrast */
     .trust-badge {
         display: inline-flex;
         align-items: center;
-        padding: 0.5rem 1rem;
-        margin: 0.25rem;
-        border-radius: 9999px;
+        padding: 0.75rem 1.25rem;
+        margin: 0.5rem;
+        border-radius: var(--radius-lg);
         font-size: 0.875rem;
-        font-weight: 500;
-        text-transform: capitalize;
-        letter-spacing: 0.025em;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
         font-family: 'Inter', sans-serif;
-        box-shadow: var(--shadow-sm);
-        transition: all 0.15s ease-in-out;
-        border: none;
+        box-shadow: var(--shadow-md);
+        transition: all 0.2s ease;
+        border: 2px solid transparent;
     }
     
     .trust-badge:hover {
-        transform: translateY(-1px);
-        box-shadow: var(--shadow-md);
+        transform: translateY(-2px) scale(1.05);
+        box-shadow: var(--shadow-lg);
     }
     
-    /* Semantic Badge Colors - Light backgrounds with dark text */
-    .badge-success { 
-        background: var(--badge-success-bg);
-        color: var(--badge-success-text);
+    /* HIGH CONTRAST BADGE COLORS */
+    .badge-success, .badge-green { 
+        background: var(--badge-success-bg) !important;
+        color: var(--badge-success-text) !important;
+        border-color: var(--accent-green);
     }
-    .badge-info { 
-        background: var(--badge-info-bg);
-        color: var(--badge-info-text);
+    .badge-info, .badge-blue { 
+        background: var(--badge-info-bg) !important;
+        color: var(--badge-info-text) !important;
+        border-color: var(--primary);
     }
-    .badge-warning { 
-        background: var(--badge-warning-bg);
-        color: var(--badge-warning-text);
+    .badge-warning, .badge-orange, .badge-gold { 
+        background: var(--badge-warning-bg) !important;
+        color: var(--badge-warning-text) !important;
+        border-color: var(--accent-amber);
     }
     .badge-error { 
-        background: var(--badge-error-bg);
-        color: var(--badge-error-text);
-    }
-    
-    /* Alias for backwards compatibility */
-    .badge-green { 
-        background: var(--badge-success-bg);
-        color: var(--badge-success-text);
-    }
-    .badge-blue { 
-        background: var(--badge-info-bg);
-        color: var(--badge-info-text);
-    }
-    .badge-orange { 
-        background: var(--badge-warning-bg);
-        color: var(--badge-warning-text);
+        background: var(--badge-error-bg) !important;
+        color: var(--badge-error-text) !important;
+        border-color: var(--accent-red);
     }
     .badge-purple { 
-        background: #F3E8FF;
-        color: #581C87;
+        background: #F3E8FF !important;
+        color: #581C87 !important;
+        border-color: #A855F7;
     }
     .badge-teal { 
-        background: #CCFBF1;
-        color: #0F766E;
-    }
-    .badge-gold { 
-        background: var(--badge-warning-bg);
-        color: var(--badge-warning-text);
+        background: #CCFBF1 !important;
+        color: #0F766E !important;
+        border-color: var(--accent-green);
     }
     
     /* Mobile Badge Adjustments */
@@ -499,17 +561,18 @@ st.markdown("""
         box-shadow: 0 4px 15px rgba(31, 78, 121, 0.4);
     }
     
-    /* Modern Project Title - Clean Typography */
+    /* PROJECT TITLES - Maximum Visibility */
     .project-title {
-        color: var(--text-primary);
-        font-size: 1.5rem;
-        font-weight: 600;
+        color: var(--text-primary) !important;
+        font-size: 1.75rem !important;
+        font-weight: 800 !important;
         margin-bottom: 1.5rem;
-        border-left: 4px solid var(--tonkin-primary);
-        padding-left: 1.5rem;
+        border-left: 6px solid var(--primary);
+        padding-left: 2rem;
         position: relative;
-        line-height: 1.4;
+        line-height: 1.3;
         letter-spacing: -0.025em;
+        text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
     }
     
     .collaboration-indicators {
