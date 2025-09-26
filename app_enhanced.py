@@ -104,47 +104,7 @@ st.markdown("""
         --badge-error-text: #991B1B;
     }
     
-    /* DARK THEME - When .dark-theme is applied */
-    .dark-theme,
-    .dark-theme .stApp,
-    .dark-theme .main,
-    .dark-theme .stSidebar {
-        --bg-primary: #0F172A !important;           /* Dark slate */
-        --bg-secondary: #1E293B !important;         /* Darker slate */
-        --bg-tertiary: #334155 !important;          /* Medium slate */
-        --bg-sidebar: #1E293B !important;           /* Dark sidebar */
-        --bg-card: #1E293B !important;              /* Dark cards */
-        --bg-hover: #334155 !important;             /* Dark hover */
-        
-        --text-primary: #F8FAFC !important;         /* Light text */
-        --text-secondary: #CBD5E1 !important;       /* Medium light text */
-        --text-tertiary: #94A3B8 !important;        /* Lighter text */
-        --text-inverse: #0F172A !important;         /* Dark text on light bg */
-        
-        --border-primary: #334155 !important;       /* Dark borders */
-        --border-secondary: #475569 !important;     /* Medium dark borders */
-        --border-focus: var(--primary) !important;  /* Focus borders */
-        
-        --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.5) !important;
-        --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.6), 0 2px 4px -1px rgba(0, 0, 0, 0.5) !important;
-        --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.6), 0 4px 6px -2px rgba(0, 0, 0, 0.5) !important;
-        
-        /* Badge Colors - Dark Theme */
-        --badge-info-bg: #1E3A8A !important;
-        --badge-info-text: #DBEAFE !important;
-        --badge-success-bg: #065F46 !important;
-        --badge-success-text: #D1FAE5 !important;
-        --badge-warning-bg: #92400E !important;
-        --badge-warning-text: #FEF3C7 !important;
-        --badge-error-bg: #991B1B !important;
-        --badge-error-text: #FEE2E2 !important;
-    }
-    
-    /* Ensure dark theme applies to body and html */
-    .dark-theme {
-        background: var(--bg-primary) !important;
-        color: var(--text-primary) !important;
-    }
+    /* REMOVED OLD DARK THEME CSS - Using direct injection instead */
     
     /* THEME TOGGLE BUTTON */
     .theme-toggle {
@@ -183,26 +143,7 @@ st.markdown("""
         transition: all 0.3s ease;
     }
     
-    /* Force dark theme styling for main app */
-    .dark-theme .stApp {
-        background: var(--bg-primary) !important;
-        color: var(--text-primary) !important;
-    }
-    
-    .dark-theme {
-        background: var(--bg-primary) !important;
-        color: var(--text-primary) !important;
-    }
-    
-    /* Ensure all containers inherit theme properly */
-    .dark-theme .main .block-container {
-        background: var(--bg-primary) !important;
-        color: var(--text-primary) !important;
-    }
-    
-    .dark-theme .stMarkdown {
-        color: var(--text-primary) !important;
-    }
+    /* SIMPLIFIED THEMING - All theme switching now done via direct CSS injection */
     
     /* TYPOGRAPHY - High Contrast & Clear */
     .stApp h1, .stApp h2, .stApp h3 {
@@ -969,40 +910,98 @@ def main():
     # Apply theme class to body using JavaScript
     theme_class = "dark-theme" if st.session_state.dark_theme else ""
     
-    # Apply theme class using CSS injection
+    # Apply theme using direct CSS injection - MUCH MORE RELIABLE
     if st.session_state.dark_theme:
-        st.markdown("""
-        <script>
-            document.body.classList.add('dark-theme');
-            document.documentElement.classList.add('dark-theme');
-            // Force update main app container
-            const appContainer = document.querySelector('.stApp');
-            if (appContainer) {
-                appContainer.classList.add('dark-theme');
-            }
-            // Force update sidebar
-            const sidebar = document.querySelector('.stSidebar');
-            if (sidebar) {
-                sidebar.classList.add('dark-theme');
-            }
-        </script>
+        st.markdown(f"""
+        <style>
+            /* FORCE DARK THEME ON ALL ELEMENTS */
+            .stApp, .main, .block-container, div[data-testid="stAppViewContainer"] {{
+                background-color: #0F172A !important;
+                color: #F8FAFC !important;
+            }}
+            
+            .stSidebar, .stSidebar > div {{
+                background-color: #1E293B !important;
+                color: #F8FAFC !important;
+            }}
+            
+            /* Override all text elements for dark theme */
+            .stApp h1, .stApp h2, .stApp h3, .stApp h4, .stApp h5, .stApp h6 {{
+                color: #F8FAFC !important;
+            }}
+            
+            .stApp p, .stApp div, .stApp span, .stApp label {{
+                color: #CBD5E1 !important;
+            }}
+            
+            .stMarkdown {{
+                color: #F8FAFC !important;
+            }}
+            
+            /* Dark theme form elements */
+            .stTextInput input, .stSelectbox select {{
+                background-color: #1E293B !important;
+                color: #F8FAFC !important;
+                border-color: #334155 !important;
+            }}
+            
+            /* Dark theme cards and containers */
+            div[data-testid="stExpander"] {{
+                background-color: #1E293B !important;
+                border-color: #334155 !important;
+            }}
+            
+            .result-card {{
+                background-color: #1E293B !important;
+                border-color: #334155 !important;
+            }}
+        </style>
         """, unsafe_allow_html=True)
     else:
-        st.markdown("""
-        <script>
-            document.body.classList.remove('dark-theme');
-            document.documentElement.classList.remove('dark-theme');
-            // Force update main app container
-            const appContainer = document.querySelector('.stApp');
-            if (appContainer) {
-                appContainer.classList.remove('dark-theme');
-            }
-            // Force update sidebar
-            const sidebar = document.querySelector('.stSidebar');
-            if (sidebar) {
-                sidebar.classList.remove('dark-theme');
-            }
-        </script>
+        st.markdown(f"""
+        <style>
+            /* FORCE LIGHT THEME ON ALL ELEMENTS */
+            .stApp, .main, .block-container, div[data-testid="stAppViewContainer"] {{
+                background-color: #FFFFFF !important;
+                color: #0F172A !important;
+            }}
+            
+            .stSidebar, .stSidebar > div {{
+                background-color: #F8FAFC !important;
+                color: #0F172A !important;
+            }}
+            
+            /* Override all text elements for light theme */
+            .stApp h1, .stApp h2, .stApp h3, .stApp h4, .stApp h5, .stApp h6 {{
+                color: #0F172A !important;
+            }}
+            
+            .stApp p, .stApp div, .stApp span, .stApp label {{
+                color: #475569 !important;
+            }}
+            
+            .stMarkdown {{
+                color: #0F172A !important;
+            }}
+            
+            /* Light theme form elements */
+            .stTextInput input, .stSelectbox select {{
+                background-color: #FFFFFF !important;
+                color: #0F172A !important;
+                border-color: #E2E8F0 !important;
+            }}
+            
+            /* Light theme cards and containers */
+            div[data-testid="stExpander"] {{
+                background-color: #FFFFFF !important;
+                border-color: #E2E8F0 !important;
+            }}
+            
+            .result-card {{
+                background-color: #FFFFFF !important;
+                border-color: #E2E8F0 !important;
+            }}
+        </style>
         """, unsafe_allow_html=True)
     
     # Theme toggle in sidebar with enhanced styling
