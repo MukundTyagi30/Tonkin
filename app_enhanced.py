@@ -955,6 +955,25 @@ def main():
                 background-color: #1E293B !important;
                 border-color: #334155 !important;
             }}
+            
+            /* Dark theme buttons - Bright and visible */
+            .stButton button {{
+                background-color: #3B82F6 !important;
+                color: #FFFFFF !important;
+                border: 2px solid #3B82F6 !important;
+                border-radius: 8px !important;
+                padding: 0.75rem 1.5rem !important;
+                font-weight: 600 !important;
+                font-size: 14px !important;
+                transition: all 0.2s ease !important;
+            }}
+            
+            .stButton button:hover {{
+                background-color: #2563EB !important;
+                border-color: #2563EB !important;
+                transform: translateY(-1px) !important;
+                box-shadow: 0 4px 12px rgba(59, 130, 246, 0.4) !important;
+            }}
         </style>
         """, unsafe_allow_html=True)
     else:
@@ -1000,6 +1019,26 @@ def main():
             .result-card {{
                 background-color: #FFFFFF !important;
                 border-color: #E2E8F0 !important;
+            }}
+            
+            /* Light theme buttons - Clean and professional */
+            .stButton button {{
+                background-color: #3B82F6 !important;
+                color: #FFFFFF !important;
+                border: 2px solid #3B82F6 !important;
+                border-radius: 8px !important;
+                padding: 0.75rem 1.5rem !important;
+                font-weight: 600 !important;
+                font-size: 14px !important;
+                transition: all 0.2s ease !important;
+                box-shadow: 0 2px 4px rgba(59, 130, 246, 0.1) !important;
+            }}
+            
+            .stButton button:hover {{
+                background-color: #2563EB !important;
+                border-color: #2563EB !important;
+                transform: translateY(-1px) !important;
+                box-shadow: 0 4px 12px rgba(59, 130, 246, 0.2) !important;
             }}
         </style>
         """, unsafe_allow_html=True)
