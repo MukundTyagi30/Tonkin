@@ -938,19 +938,34 @@ def main():
                 color: #F8FAFC !important;
             }}
             
-            /* Dark theme form elements - Bright and visible */
-            .stTextInput input, .stSelectbox select, .stSelectbox > div > div {{
+            /* Dark theme form elements - FORCE WHITE BACKGROUNDS */
+            .stTextInput > div > div > input,
+            .stSelectbox > div > div,
+            .stSelectbox > div > div > div,
+            .stSelectbox div[data-baseweb="select"] > div,
+            div[data-baseweb="select"] > div,
+            div[data-testid="stSelectbox"] > div > div,
+            .stSelectbox select {{
                 background-color: #FFFFFF !important;
                 color: #0F172A !important;
                 border: 2px solid #3B82F6 !important;
                 border-radius: 8px !important;
                 padding: 0.75rem !important;
                 font-weight: 500 !important;
+                font-size: 14px !important;
             }}
             
-            .stSelectbox > div > div:hover {{
+            .stSelectbox > div > div:hover,
+            div[data-baseweb="select"] > div:hover {{
                 border-color: #2563EB !important;
                 box-shadow: 0 2px 8px rgba(59, 130, 246, 0.3) !important;
+            }}
+            
+            /* Force selectbox dropdown options to be white too */
+            .stSelectbox div[role="listbox"],
+            .stSelectbox div[role="option"] {{
+                background-color: #FFFFFF !important;
+                color: #0F172A !important;
             }}
             
             /* Dark theme cards and containers */
@@ -1011,20 +1026,35 @@ def main():
                 color: #0F172A !important;
             }}
             
-            /* Light theme form elements - Clean and bright */
-            .stTextInput input, .stSelectbox select, .stSelectbox > div > div {{
+            /* Light theme form elements - FORCE WHITE BACKGROUNDS */
+            .stTextInput > div > div > input,
+            .stSelectbox > div > div,
+            .stSelectbox > div > div > div,
+            .stSelectbox div[data-baseweb="select"] > div,
+            div[data-baseweb="select"] > div,
+            div[data-testid="stSelectbox"] > div > div,
+            .stSelectbox select {{
                 background-color: #FFFFFF !important;
                 color: #0F172A !important;
                 border: 2px solid #3B82F6 !important;
                 border-radius: 8px !important;
                 padding: 0.75rem !important;
                 font-weight: 500 !important;
+                font-size: 14px !important;
                 box-shadow: 0 1px 3px rgba(59, 130, 246, 0.1) !important;
             }}
             
-            .stSelectbox > div > div:hover {{
+            .stSelectbox > div > div:hover,
+            div[data-baseweb="select"] > div:hover {{
                 border-color: #2563EB !important;
                 box-shadow: 0 2px 8px rgba(59, 130, 246, 0.2) !important;
+            }}
+            
+            /* Force selectbox dropdown options to be white too */
+            .stSelectbox div[role="listbox"],
+            .stSelectbox div[role="option"] {{
+                background-color: #FFFFFF !important;
+                color: #0F172A !important;
             }}
             
             /* Light theme cards and containers */
