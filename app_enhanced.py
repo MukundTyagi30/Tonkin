@@ -930,7 +930,34 @@ def apply_filters(projects: List[Dict], filters: Dict) -> List[Dict]:
     return filtered
 
 def main():
-    """Enhanced main Streamlit application."""
+    """Enhanced main Streamlit application with dark/light theme toggle."""
+    
+    # Initialize theme in session state
+    if 'dark_theme' not in st.session_state:
+        st.session_state.dark_theme = False
+    
+    # Apply theme class to body using JavaScript
+    theme_class = "dark-theme" if st.session_state.dark_theme else ""
+    
+    st.markdown(f"""
+    <script>
+        document.body.className = '{theme_class}';
+        document.documentElement.className = '{theme_class}';
+    </script>
+    """, unsafe_allow_html=True)
+    
+    # Theme toggle in sidebar
+    with st.sidebar:
+        theme_text = "🌞 Switch to Light Mode" if st.session_state.dark_theme else "🌙 Switch to Dark Mode"
+        theme_emoji = "🌞" if st.session_state.dark_theme else "🌙"
+        
+        st.markdown(f"### {theme_emoji} Theme")
+        if st.button(theme_text, key="theme_toggle", use_container_width=True):
+            st.session_state.dark_theme = not st.session_state.dark_theme
+            st.rerun()
+        
+        current_theme = "Dark Theme 🌙" if st.session_state.dark_theme else "Light Theme ☀️"
+        st.info(f"**Current:** {current_theme}")
     
     # Header
     st.markdown("""
