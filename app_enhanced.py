@@ -968,6 +968,29 @@ def main():
                 color: #0F172A !important;
             }}
             
+            /* Search example buttons - FORCE bright green styling in dark theme */
+            .search-example-btn,
+            div[data-testid="stExpander"] .stButton button,
+            .stExpander .stButton button {{
+                background-color: #10B981 !important;
+                color: #FFFFFF !important;
+                border: 2px solid #10B981 !important;
+                border-radius: 20px !important;
+                padding: 0.5rem 1rem !important;
+                font-weight: 500 !important;
+                font-size: 13px !important;
+                margin: 0.25rem !important;
+            }}
+            
+            .search-example-btn:hover,
+            div[data-testid="stExpander"] .stButton button:hover,
+            .stExpander .stButton button:hover {{
+                background-color: #059669 !important;
+                border-color: #059669 !important;
+                transform: translateY(-1px) !important;
+                box-shadow: 0 3px 10px rgba(16, 185, 129, 0.4) !important;
+            }}
+            
             /* Dark theme cards and containers */
             div[data-testid="stExpander"] {{
                 background-color: #1E293B !important;
@@ -1055,6 +1078,30 @@ def main():
             .stSelectbox div[role="option"] {{
                 background-color: #FFFFFF !important;
                 color: #0F172A !important;
+            }}
+            
+            /* Search example buttons - FORCE bright green styling in light theme */
+            .search-example-btn,
+            div[data-testid="stExpander"] .stButton button,
+            .stExpander .stButton button {{
+                background-color: #10B981 !important;
+                color: #FFFFFF !important;
+                border: 2px solid #10B981 !important;
+                border-radius: 20px !important;
+                padding: 0.5rem 1rem !important;
+                font-weight: 500 !important;
+                font-size: 13px !important;
+                margin: 0.25rem !important;
+                box-shadow: 0 1px 3px rgba(16, 185, 129, 0.2) !important;
+            }}
+            
+            .search-example-btn:hover,
+            div[data-testid="stExpander"] .stButton button:hover,
+            .stExpander .stButton button:hover {{
+                background-color: #059669 !important;
+                border-color: #059669 !important;
+                transform: translateY(-1px) !important;
+                box-shadow: 0 3px 10px rgba(16, 185, 129, 0.3) !important;
             }}
             
             /* Light theme cards and containers */
