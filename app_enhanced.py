@@ -105,36 +105,45 @@ st.markdown("""
     }
     
     /* DARK THEME - When .dark-theme is applied */
-    .dark-theme {
-        --bg-primary: #0F172A;           /* Dark slate */
-        --bg-secondary: #1E293B;         /* Darker slate */
-        --bg-tertiary: #334155;          /* Medium slate */
-        --bg-sidebar: #1E293B;           /* Dark sidebar */
-        --bg-card: #1E293B;              /* Dark cards */
-        --bg-hover: #334155;             /* Dark hover */
+    .dark-theme,
+    .dark-theme .stApp,
+    .dark-theme .main,
+    .dark-theme .stSidebar {
+        --bg-primary: #0F172A !important;           /* Dark slate */
+        --bg-secondary: #1E293B !important;         /* Darker slate */
+        --bg-tertiary: #334155 !important;          /* Medium slate */
+        --bg-sidebar: #1E293B !important;           /* Dark sidebar */
+        --bg-card: #1E293B !important;              /* Dark cards */
+        --bg-hover: #334155 !important;             /* Dark hover */
         
-        --text-primary: #F8FAFC;         /* Light text */
-        --text-secondary: #CBD5E1;       /* Medium light text */
-        --text-tertiary: #94A3B8;        /* Lighter text */
-        --text-inverse: #0F172A;         /* Dark text on light bg */
+        --text-primary: #F8FAFC !important;         /* Light text */
+        --text-secondary: #CBD5E1 !important;       /* Medium light text */
+        --text-tertiary: #94A3B8 !important;        /* Lighter text */
+        --text-inverse: #0F172A !important;         /* Dark text on light bg */
         
-        --border-primary: #334155;       /* Dark borders */
-        --border-secondary: #475569;     /* Medium dark borders */
-        --border-focus: var(--primary);  /* Focus borders */
+        --border-primary: #334155 !important;       /* Dark borders */
+        --border-secondary: #475569 !important;     /* Medium dark borders */
+        --border-focus: var(--primary) !important;  /* Focus borders */
         
-        --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.3);
-        --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.4), 0 2px 4px -1px rgba(0, 0, 0, 0.3);
-        --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.4), 0 4px 6px -2px rgba(0, 0, 0, 0.3);
+        --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.5) !important;
+        --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.6), 0 2px 4px -1px rgba(0, 0, 0, 0.5) !important;
+        --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.6), 0 4px 6px -2px rgba(0, 0, 0, 0.5) !important;
         
         /* Badge Colors - Dark Theme */
-        --badge-info-bg: #1E3A8A;
-        --badge-info-text: #DBEAFE;
-        --badge-success-bg: #065F46;
-        --badge-success-text: #D1FAE5;
-        --badge-warning-bg: #92400E;
-        --badge-warning-text: #FEF3C7;
-        --badge-error-bg: #991B1B;
-        --badge-error-text: #FEE2E2;
+        --badge-info-bg: #1E3A8A !important;
+        --badge-info-text: #DBEAFE !important;
+        --badge-success-bg: #065F46 !important;
+        --badge-success-text: #D1FAE5 !important;
+        --badge-warning-bg: #92400E !important;
+        --badge-warning-text: #FEF3C7 !important;
+        --badge-error-bg: #991B1B !important;
+        --badge-error-text: #FEE2E2 !important;
+    }
+    
+    /* Ensure dark theme applies to body and html */
+    .dark-theme {
+        background: var(--bg-primary) !important;
+        color: var(--text-primary) !important;
     }
     
     /* THEME TOGGLE BUTTON */
