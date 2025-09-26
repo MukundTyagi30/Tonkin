@@ -938,11 +938,19 @@ def main():
                 color: #F8FAFC !important;
             }}
             
-            /* Dark theme form elements */
-            .stTextInput input, .stSelectbox select {{
-                background-color: #1E293B !important;
-                color: #F8FAFC !important;
-                border-color: #334155 !important;
+            /* Dark theme form elements - Bright and visible */
+            .stTextInput input, .stSelectbox select, .stSelectbox > div > div {{
+                background-color: #FFFFFF !important;
+                color: #0F172A !important;
+                border: 2px solid #3B82F6 !important;
+                border-radius: 8px !important;
+                padding: 0.75rem !important;
+                font-weight: 500 !important;
+            }}
+            
+            .stSelectbox > div > div:hover {{
+                border-color: #2563EB !important;
+                box-shadow: 0 2px 8px rgba(59, 130, 246, 0.3) !important;
             }}
             
             /* Dark theme cards and containers */
@@ -1003,11 +1011,20 @@ def main():
                 color: #0F172A !important;
             }}
             
-            /* Light theme form elements */
-            .stTextInput input, .stSelectbox select {{
+            /* Light theme form elements - Clean and bright */
+            .stTextInput input, .stSelectbox select, .stSelectbox > div > div {{
                 background-color: #FFFFFF !important;
                 color: #0F172A !important;
-                border-color: #E2E8F0 !important;
+                border: 2px solid #3B82F6 !important;
+                border-radius: 8px !important;
+                padding: 0.75rem !important;
+                font-weight: 500 !important;
+                box-shadow: 0 1px 3px rgba(59, 130, 246, 0.1) !important;
+            }}
+            
+            .stSelectbox > div > div:hover {{
+                border-color: #2563EB !important;
+                box-shadow: 0 2px 8px rgba(59, 130, 246, 0.2) !important;
             }}
             
             /* Light theme cards and containers */
