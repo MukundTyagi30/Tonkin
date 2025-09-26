@@ -164,7 +164,7 @@ st.markdown("""
         box-shadow: var(--shadow-xl) !important;
     }
     
-    /* GLOBAL APP STYLING - Excellent Contrast */
+    /* GLOBAL APP STYLING - Excellent Contrast with Proper Theme Support */
     .stApp {
         font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
         background: var(--bg-primary) !important;
@@ -172,6 +172,27 @@ st.markdown("""
         font-size: 16px;
         line-height: 1.6;
         transition: all 0.3s ease;
+    }
+    
+    /* Force dark theme styling for main app */
+    .dark-theme .stApp {
+        background: var(--bg-primary) !important;
+        color: var(--text-primary) !important;
+    }
+    
+    .dark-theme {
+        background: var(--bg-primary) !important;
+        color: var(--text-primary) !important;
+    }
+    
+    /* Ensure all containers inherit theme properly */
+    .dark-theme .main .block-container {
+        background: var(--bg-primary) !important;
+        color: var(--text-primary) !important;
+    }
+    
+    .dark-theme .stMarkdown {
+        color: var(--text-primary) !important;
     }
     
     /* TYPOGRAPHY - High Contrast & Clear */
@@ -939,25 +960,63 @@ def main():
     # Apply theme class to body using JavaScript
     theme_class = "dark-theme" if st.session_state.dark_theme else ""
     
-    st.markdown(f"""
-    <script>
-        document.body.className = '{theme_class}';
-        document.documentElement.className = '{theme_class}';
-    </script>
-    """, unsafe_allow_html=True)
+    # Apply theme class using CSS injection
+    if st.session_state.dark_theme:
+        st.markdown("""
+        <script>
+            document.body.classList.add('dark-theme');
+            document.documentElement.classList.add('dark-theme');
+            // Force update main app container
+            const appContainer = document.querySelector('.stApp');
+            if (appContainer) {
+                appContainer.classList.add('dark-theme');
+            }
+            // Force update sidebar
+            const sidebar = document.querySelector('.stSidebar');
+            if (sidebar) {
+                sidebar.classList.add('dark-theme');
+            }
+        </script>
+        """, unsafe_allow_html=True)
+    else:
+        st.markdown("""
+        <script>
+            document.body.classList.remove('dark-theme');
+            document.documentElement.classList.remove('dark-theme');
+            // Force update main app container
+            const appContainer = document.querySelector('.stApp');
+            if (appContainer) {
+                appContainer.classList.remove('dark-theme');
+            }
+            // Force update sidebar
+            const sidebar = document.querySelector('.stSidebar');
+            if (sidebar) {
+                sidebar.classList.remove('dark-theme');
+            }
+        </script>
+        """, unsafe_allow_html=True)
     
-    # Theme toggle in sidebar
+    # Theme toggle in sidebar with enhanced styling
     with st.sidebar:
+        st.markdown("---")
         theme_text = "🌞 Switch to Light Mode" if st.session_state.dark_theme else "🌙 Switch to Dark Mode"
         theme_emoji = "🌞" if st.session_state.dark_theme else "🌙"
         
-        st.markdown(f"### {theme_emoji} Theme")
+        st.markdown(f"### {theme_emoji} **Theme Control**")
+        
+        # Big, visible theme toggle button
         if st.button(theme_text, key="theme_toggle", use_container_width=True):
             st.session_state.dark_theme = not st.session_state.dark_theme
             st.rerun()
         
-        current_theme = "Dark Theme 🌙" if st.session_state.dark_theme else "Light Theme ☀️"
-        st.info(f"**Current:** {current_theme}")
+        current_theme = "🌙 **Dark Theme Active**" if st.session_state.dark_theme else "☀️ **Light Theme Active**"
+        
+        if st.session_state.dark_theme:
+            st.success(current_theme)
+        else:
+            st.info(current_theme)
+        
+        st.markdown("---")
     
     # Header
     st.markdown("""
