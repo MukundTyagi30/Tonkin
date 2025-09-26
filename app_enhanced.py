@@ -48,88 +48,141 @@ st.markdown("""
         max-width: 1200px;
     }
     
-    /* High Contrast Colors - Much Easier to See */
+    /* Modern Professional Color Palette - Clean & Trustworthy */
     :root {
-        --tonkin-primary: #0066cc;       /* Bright blue - high contrast */
-        --tonkin-secondary: #0052a3;     /* Darker blue for depth */
-        --tonkin-accent: #ff6b35;        /* Bright orange - very visible */
-        --tonkin-background: #ffffff;    /* Pure white background */
-        --tonkin-surface: #f8f9fa;       /* Light gray cards */
-        --tonkin-gray-light: #e9ecef;    /* Visible light gray */
-        --tonkin-gray-medium: #495057;   /* Strong medium gray */
-        --tonkin-gray-dark: #212529;     /* Dark gray - high contrast */
-        --tonkin-success: #28a745;       /* Bright green */
-        --tonkin-warning: #ffc107;       /* Bright yellow */
-        --tonkin-error: #dc3545;         /* Bright red */
-        --tonkin-shadow: rgba(0, 0, 0, 0.2);
-        --tonkin-shadow-lg: rgba(0, 0, 0, 0.3);
+        /* Primary Colors - Calm but Strong Blue for Trust */
+        --tonkin-primary: #2563EB;       /* Blue-600 - Professional blue */
+        --tonkin-primary-dark: #1D4ED8;  /* Blue-700 - Darker for depth */
+        --tonkin-primary-light: #3B82F6; /* Blue-500 - Lighter variant */
         
-        /* Button specific colors */
-        --button-blue: #007bff;          /* Bright button blue */
-        --button-blue-hover: #0056b3;    /* Darker on hover */
-        --button-green: #28a745;         /* Bright green */
-        --button-green-hover: #218838;   /* Darker green */
-        --button-orange: #fd7e14;        /* Bright orange */
-        --button-orange-hover: #e55100;  /* Darker orange */
-        --button-gray: #6c757d;          /* Visible gray */
-        --button-gray-hover: #545b62;    /* Darker gray */
+        /* Secondary/Accent Colors */
+        --tonkin-accent-orange: #F97316; /* Orange-500 - For highlights */
+        --tonkin-accent-teal: #10B981;   /* Emerald-500 - For success */
+        --tonkin-accent-amber: #FACC15;  /* Amber-400 - For warnings */
+        
+        /* Neutral Backgrounds - Soft tones */
+        --tonkin-background: #F9FAFB;    /* Gray-50 - Off-white */
+        --tonkin-surface: #FFFFFF;       /* Pure white cards */
+        --tonkin-surface-hover: #F4F5F7; /* Slightly darker on hover */
+        
+        /* Gray Scale - Professional neutrals */
+        --tonkin-gray-50: #F9FAFB;
+        --tonkin-gray-100: #F3F4F6;
+        --tonkin-gray-200: #E5E7EB;
+        --tonkin-gray-300: #D1D5DB;
+        --tonkin-gray-400: #9CA3AF;
+        --tonkin-gray-500: #6B7280;
+        --tonkin-gray-600: #4B5563;
+        --tonkin-gray-700: #374151;
+        --tonkin-gray-800: #1F2937;
+        --tonkin-gray-900: #111827;
+        
+        /* Text Colors - High contrast for readability */
+        --text-primary: #111827;         /* Gray-900 - Headlines */
+        --text-secondary: #374151;       /* Gray-700 - Body text */
+        --text-tertiary: #6B7280;        /* Gray-500 - Captions */
+        --text-inverse: #FFFFFF;         /* White text on dark backgrounds */
+        
+        /* Status Colors - Consistent semantic meaning */
+        --status-success: #22C55E;       /* Green-500 - High trust */
+        --status-warning: #FACC15;       /* Amber-400 - Medium */
+        --status-error: #DC2626;         /* Red-600 - Low trust/risk */
+        --status-info: #3B82F6;          /* Blue-500 - Information */
+        
+        /* Badge Colors - Light backgrounds with darker text */
+        --badge-info-bg: #DBEAFE;        /* Blue-100 */
+        --badge-info-text: #1E3A8A;      /* Blue-800 */
+        --badge-success-bg: #D1FAE5;     /* Emerald-100 */
+        --badge-success-text: #064E3B;   /* Emerald-800 */
+        --badge-warning-bg: #FEF3C7;     /* Amber-100 */
+        --badge-warning-text: #92400E;   /* Amber-800 */
+        --badge-error-bg: #FEE2E2;       /* Red-100 */
+        --badge-error-text: #991B1B;     /* Red-800 */
+        
+        /* Shadows - Subtle elevation */
+        --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+        --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        
+        /* Border Radius - Modern rounded corners */
+        --radius-sm: 0.25rem;            /* 4px */
+        --radius-md: 0.375rem;           /* 6px */
+        --radius-lg: 0.5rem;             /* 8px */
+        --radius-xl: 0.75rem;            /* 12px */
+        --radius-2xl: 1rem;              /* 16px */
     }
     
-    /* Global Typography & Background - High Contrast */
+    /* Global Typography & Background - Clean & Professional */
     .stApp {
-        font-family: 'Inter', sans-serif;
+        font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
         background: var(--tonkin-background);
-        color: var(--tonkin-gray-dark);
+        color: var(--text-primary);
+        font-size: 16px;
+        line-height: 1.6;
     }
     
-    /* High contrast text */
+    /* Typography Hierarchy - Clear and readable */
     .stApp h1, .stApp h2, .stApp h3 {
-        color: var(--tonkin-gray-dark);
-        font-weight: 700;
+        color: var(--text-primary);
+        font-weight: 600;
+        letter-spacing: -0.025em;
+        margin-bottom: 1rem;
     }
+    
+    .stApp h1 { font-size: 2.25rem; line-height: 1.2; }
+    .stApp h2 { font-size: 1.875rem; line-height: 1.3; }
+    .stApp h3 { font-size: 1.5rem; line-height: 1.4; }
     
     .stApp p, .stApp div {
-        color: var(--tonkin-gray-dark);
+        color: var(--text-secondary);
         line-height: 1.6;
-        font-weight: 500;
+        font-weight: 400;
     }
     
-    /* Enhanced button styling */
+    /* Modern Button Styling - Professional Blue Theme */
     .stButton > button {
-        background: linear-gradient(135deg, var(--button-blue) 0%, var(--button-blue-hover) 100%) !important;
-        color: white !important;
-        border: 2px solid var(--button-blue) !important;
-        border-radius: 8px !important;
-        padding: 12px 24px !important;
-        font-weight: 600 !important;
-        font-size: 14px !important;
-        transition: all 0.2s ease !important;
-        box-shadow: 0 4px 12px rgba(0, 123, 255, 0.3) !important;
+        background: var(--tonkin-primary) !important;
+        color: var(--text-inverse) !important;
+        border: 1px solid var(--tonkin-primary) !important;
+        border-radius: var(--radius-lg) !important;
+        padding: 0.75rem 1.5rem !important;
+        font-weight: 500 !important;
+        font-size: 16px !important;
+        transition: all 0.15s ease-in-out !important;
+        box-shadow: var(--shadow-sm) !important;
+        min-height: 44px !important;
     }
     
     .stButton > button:hover {
-        background: var(--button-blue-hover) !important;
-        transform: translateY(-2px) !important;
-        box-shadow: 0 6px 20px rgba(0, 123, 255, 0.4) !important;
-        border-color: var(--button-blue-hover) !important;
+        background: var(--tonkin-primary-dark) !important;
+        transform: translateY(-1px) !important;
+        box-shadow: var(--shadow-md) !important;
+        border-color: var(--tonkin-primary-dark) !important;
     }
     
     .stButton > button:active {
         transform: translateY(0px) !important;
+        box-shadow: var(--shadow-sm) !important;
     }
     
-    /* Header Styling - Enhanced Visual Appeal */
+    .stButton > button:focus {
+        outline: 2px solid var(--tonkin-primary) !important;
+        outline-offset: 2px !important;
+    }
+    
+    /* Modern Gradient Header - Professional Trust Banner */
     .main-header {
-        background: linear-gradient(135deg, var(--tonkin-primary) 0%, var(--tonkin-secondary) 100%);
-        padding: 3rem;
-        border-radius: 24px;
+        background: linear-gradient(90deg, var(--tonkin-primary) 0%, var(--tonkin-primary-dark) 100%);
+        padding: 3rem 2rem;
+        border-radius: var(--radius-2xl);
         margin-bottom: 2rem;
-        color: white;
+        color: var(--text-inverse);
         text-align: center;
-        box-shadow: 0 20px 40px var(--tonkin-shadow-lg);
+        box-shadow: var(--shadow-xl);
         position: relative;
         overflow: hidden;
-        border: 1px solid rgba(255, 255, 255, 0.2);
+        border: 1px solid rgba(255, 255, 255, 0.1);
     }
     
     .main-header::before {
@@ -158,15 +211,15 @@ st.markdown("""
         opacity: 0.95;
     }
     
-    /* Enhanced Result Card - High Contrast */
+    /* Modern Result Card - Clean with Subtle Elevation */
     .result-card {
-        border: 3px solid var(--tonkin-gray-light);
-        border-radius: 15px;
-        padding: 2.5rem;
-        margin: 2rem 0;
-        background: #ffffff;
-        box-shadow: 0 12px 32px var(--tonkin-shadow-lg);
-        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        border: 1px solid var(--tonkin-gray-200);
+        border-radius: var(--radius-xl);
+        padding: 2rem;
+        margin: 1.5rem 0;
+        background: var(--tonkin-surface);
+        box-shadow: var(--shadow-md);
+        transition: all 0.2s ease-in-out;
         position: relative;
         overflow: hidden;
     }
@@ -184,10 +237,10 @@ st.markdown("""
     }
     
     .result-card:hover {
-        transform: translateY(-8px);
-        box-shadow: 0 24px 60px var(--tonkin-shadow-lg);
-        border-color: var(--tonkin-primary);
-        background: #ffffff;
+        transform: translateY(-4px);
+        box-shadow: var(--shadow-xl);
+        border-color: var(--tonkin-gray-300);
+        background: var(--tonkin-surface);
     }
     
     .result-card:hover::before {
@@ -216,61 +269,70 @@ st.markdown("""
         }
     }
     
-    /* Trust Badges - High Contrast & Bold */
+    /* Modern Trust Badges - Pill-shaped with Semantic Colors */
     .trust-badge {
         display: inline-flex;
         align-items: center;
-        padding: 12px 20px;
-        margin: 8px;
-        border-radius: 8px;
-        font-size: 14px;
-        font-weight: 700;
-        color: white;
-        text-transform: uppercase;
-        letter-spacing: 0.5px;
+        padding: 0.5rem 1rem;
+        margin: 0.25rem;
+        border-radius: 9999px;
+        font-size: 0.875rem;
+        font-weight: 500;
+        text-transform: capitalize;
+        letter-spacing: 0.025em;
         font-family: 'Inter', sans-serif;
-        box-shadow: 0 6px 16px rgba(0,0,0,0.25);
-        transition: all 0.2s ease;
-        border: 3px solid rgba(255, 255, 255, 0.9);
+        box-shadow: var(--shadow-sm);
+        transition: all 0.15s ease-in-out;
+        border: none;
     }
     
     .trust-badge:hover {
-        transform: translateY(-3px) scale(1.1);
-        box-shadow: 0 8px 25px rgba(0,0,0,0.35);
+        transform: translateY(-1px);
+        box-shadow: var(--shadow-md);
     }
     
+    /* Semantic Badge Colors - Light backgrounds with dark text */
+    .badge-success { 
+        background: var(--badge-success-bg);
+        color: var(--badge-success-text);
+    }
+    .badge-info { 
+        background: var(--badge-info-bg);
+        color: var(--badge-info-text);
+    }
+    .badge-warning { 
+        background: var(--badge-warning-bg);
+        color: var(--badge-warning-text);
+    }
+    .badge-error { 
+        background: var(--badge-error-bg);
+        color: var(--badge-error-text);
+    }
+    
+    /* Alias for backwards compatibility */
     .badge-green { 
-        background: var(--tonkin-success);
-        border-color: #ffffff;
-        box-shadow: 0 6px 16px rgba(40, 167, 69, 0.4);
+        background: var(--badge-success-bg);
+        color: var(--badge-success-text);
     }
     .badge-blue { 
-        background: var(--tonkin-primary);
-        border-color: #ffffff;
-        box-shadow: 0 6px 16px rgba(0, 102, 204, 0.4);
+        background: var(--badge-info-bg);
+        color: var(--badge-info-text);
     }
     .badge-orange { 
-        background: var(--tonkin-accent);
-        color: white;
-        border-color: #ffffff;
-        box-shadow: 0 6px 16px rgba(255, 107, 53, 0.4);
+        background: var(--badge-warning-bg);
+        color: var(--badge-warning-text);
     }
     .badge-purple { 
-        background: #6f42c1;
-        border-color: #ffffff;
-        box-shadow: 0 6px 16px rgba(111, 66, 193, 0.4);
+        background: #F3E8FF;
+        color: #581C87;
     }
     .badge-teal { 
-        background: #17a2b8;
-        border-color: #ffffff;
-        box-shadow: 0 6px 16px rgba(23, 162, 184, 0.4);
+        background: #CCFBF1;
+        color: #0F766E;
     }
     .badge-gold { 
-        background: var(--tonkin-warning);
-        color: var(--tonkin-gray-dark);
-        border-color: #ffffff;
-        box-shadow: 0 6px 16px rgba(255, 193, 7, 0.4);
-        font-weight: 800;
+        background: var(--badge-warning-bg);
+        color: var(--badge-warning-text);
     }
     
     /* Mobile Badge Adjustments */
@@ -303,32 +365,33 @@ st.markdown("""
         color: #1f4e79;
     }
     
-    /* Similarity Score - Maximum Visibility */
+    /* Modern Similarity Score - Clean Professional Design */
     .similarity-score {
-        background: var(--button-blue);
-        color: white;
-        padding: 16px 28px;
-        border-radius: 10px;
-        font-family: 'JetBrains Mono', monospace;
-        font-weight: 700;
-        font-size: 18px;
+        background: var(--tonkin-primary);
+        color: var(--text-inverse);
+        padding: 0.75rem 1.25rem;
+        border-radius: var(--radius-lg);
+        font-family: 'JetBrains Mono', 'SF Mono', 'Monaco', monospace;
+        font-weight: 600;
+        font-size: 1rem;
         display: inline-flex;
         align-items: center;
-        gap: 10px;
-        box-shadow: 0 8px 24px rgba(0, 123, 255, 0.4);
-        border: 3px solid #ffffff;
-        transition: all 0.2s ease;
+        gap: 0.5rem;
+        box-shadow: var(--shadow-md);
+        border: 1px solid var(--tonkin-primary);
+        transition: all 0.15s ease-in-out;
     }
     
     .similarity-score:hover {
-        transform: scale(1.1);
-        box-shadow: 0 12px 32px rgba(0, 123, 255, 0.5);
-        background: var(--button-blue-hover);
+        transform: scale(1.05);
+        box-shadow: var(--shadow-lg);
+        background: var(--tonkin-primary-dark);
+        border-color: var(--tonkin-primary-dark);
     }
     
     .similarity-score::before {
         content: '🎯';
-        font-size: 16px;
+        font-size: 1rem;
     }
     
     /* Mobile Score Adjustments */
@@ -356,19 +419,19 @@ st.markdown("""
         margin-bottom: 1rem;
     }
     
-    /* Stats Cards - Enhanced Visual Appeal */
+    /* Modern Stats Cards - Clean Professional Design */
     .stat-card {
-        background: linear-gradient(135deg, var(--tonkin-primary) 0%, var(--tonkin-secondary) 100%);
-        padding: 2.5rem;
-        border-radius: 24px;
-        color: white;
+        background: linear-gradient(135deg, var(--tonkin-primary) 0%, var(--tonkin-primary-dark) 100%);
+        padding: 2rem;
+        border-radius: var(--radius-xl);
+        color: var(--text-inverse);
         text-align: center;
         margin-bottom: 1.5rem;
-        box-shadow: 0 12px 40px var(--tonkin-shadow-lg);
-        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        box-shadow: var(--shadow-lg);
+        transition: all 0.2s ease-in-out;
         position: relative;
         overflow: hidden;
-        border: 1px solid rgba(255, 255, 255, 0.2);
+        border: 1px solid rgba(255, 255, 255, 0.1);
     }
     
     .stat-card::before {
@@ -383,8 +446,8 @@ st.markdown("""
     }
     
     .stat-card:hover {
-        transform: translateY(-6px) scale(1.02);
-        box-shadow: 0 20px 60px rgba(30, 58, 138, 0.25);
+        transform: translateY(-4px);
+        box-shadow: var(--shadow-xl);
     }
     
     .stat-number {
@@ -436,17 +499,17 @@ st.markdown("""
         box-shadow: 0 4px 15px rgba(31, 78, 121, 0.4);
     }
     
-    /* Project Title - Maximum Contrast */
+    /* Modern Project Title - Clean Typography */
     .project-title {
-        color: var(--tonkin-gray-dark);
-        font-size: 1.6rem;
-        font-weight: 800;
-        margin-bottom: 2rem;
-        border-left: 6px solid var(--tonkin-primary);
-        padding-left: 2rem;
+        color: var(--text-primary);
+        font-size: 1.5rem;
+        font-weight: 600;
+        margin-bottom: 1.5rem;
+        border-left: 4px solid var(--tonkin-primary);
+        padding-left: 1.5rem;
         position: relative;
-        line-height: 1.3;
-        text-shadow: 0 1px 2px rgba(0,0,0,0.1);
+        line-height: 1.4;
+        letter-spacing: -0.025em;
     }
     
     .collaboration-indicators {
@@ -459,23 +522,23 @@ st.markdown("""
     .expert-indicator {
         display: inline-flex;
         align-items: center;
-        gap: 10px;
-        background: var(--tonkin-gray-light);
-        color: var(--tonkin-gray-dark);
-        padding: 12px 20px;
-        border-radius: 8px;
-        font-size: 14px;
-        font-weight: 700;
-        border: 2px solid var(--tonkin-gray-medium);
-        transition: all 0.3s ease;
-        box-shadow: 0 4px 8px var(--tonkin-shadow);
+        gap: 0.5rem;
+        background: var(--tonkin-gray-100);
+        color: var(--text-secondary);
+        padding: 0.5rem 1rem;
+        border-radius: var(--radius-lg);
+        font-size: 0.875rem;
+        font-weight: 500;
+        border: 1px solid var(--tonkin-gray-200);
+        transition: all 0.15s ease-in-out;
+        box-shadow: var(--shadow-sm);
     }
     
     .expert-indicator:hover {
         background: var(--tonkin-primary);
-        color: white;
-        transform: translateY(-3px);
-        box-shadow: 0 6px 16px rgba(0, 102, 204, 0.4);
+        color: var(--text-inverse);
+        transform: translateY(-1px);
+        box-shadow: var(--shadow-md);
         border-color: var(--tonkin-primary);
     }
     
