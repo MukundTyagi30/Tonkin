@@ -29,23 +29,57 @@ from utils import (
 
 # Configure Streamlit page
 st.set_page_config(
-    page_title="🔍 Tonkin Knowledge Finder",
+    page_title="Tonkin Knowledge Finder | AI-Powered Project Intelligence",
     page_icon="🔍",
     layout="wide",
-    initial_sidebar_state="expanded"
+    initial_sidebar_state="expanded",
+    menu_items={
+        'Get Help': None,
+        'Report a bug': None,
+        'About': "Tonkin Knowledge Finder - AI-Powered Project Intelligence & Expertise Discovery"
+    }
 )
 
-# Enhanced CSS for modern UI with Tonkin branding
+# COMPLETELY REDESIGNED - REACT-STYLE MODERN UI
 st.markdown("""
 <style>
-    /* Import Tonkin-style fonts */
-    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+    /* Import Modern Professional Fonts - React Style */
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
     
-    /* Main App Styling */
+    /* GLOBAL RESET - Clean Slate */
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif !important;
+    }
+    
+    /* Remove ALL Streamlit Branding */
+    #MainMenu, footer, header {
+        visibility: hidden !important;
+        height: 0 !important;
+        margin: 0 !important;
+    }
+    
+    /* REACT-STYLE APP CONTAINER */
     .main .block-container {
-        padding-top: 1rem;
-        padding-bottom: 2rem;
-        max-width: 1200px;
+        padding: 2rem 3rem !important;
+        max-width: 1400px !important;
+        margin: 0 auto !important;
+        background: #F8FAFC !important;
+    }
+    
+    /* Smooth Modern Scrolling */
+    html {
+        scroll-behavior: smooth;
+        font-size: 16px;
+        line-height: 1.6;
+    }
+    
+    body {
+        background: linear-gradient(135deg, #F8FAFC 0%, #F1F5F9 100%) !important;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
     }
     
     /* DARK/LIGHT THEME SYSTEM - Excellent Visibility & Contrast */
@@ -707,24 +741,36 @@ def create_dashboard():
     st.plotly_chart(fig3, use_container_width=True)
 
 def render_enhanced_result_card(result: Dict[str, Any], query: str, rank: int) -> None:
-    """Render an enhanced result card with modern styling and team collaboration features."""
+    """Render an enhanced result card with React-inspired professional styling."""
     
-    # Project title with rank and collaboration indicators
+    # Professional Card Container Start
+    st.markdown(f"""
+    <div style="
+        background: white;
+        border: 2px solid #E2E8F0;
+        border-radius: 16px;
+        padding: 2rem;
+        margin: 1.5rem 0;
+        box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        transition: all 0.3s ease;
+        position: relative;
+        overflow: hidden;
+    " class="result-card">
+        <div style="position: absolute; top: 0; left: 0; width: 6px; height: 100%; background: linear-gradient(to bottom, #3B82F6, #10B981);"></div>
+    """, unsafe_allow_html=True)
+    
+    # Project Number (Blue, Monospace)
+    project_number = result.get('project_number', 'Unknown')
     project_name = result.get('project_name', 'Unknown Project')
     
-    # Team collaboration indicators
-    collaboration_html = ""
-    if result.get('project_leader'):
-        collaboration_html += f'<span class="expert-indicator" title="Project Leader">👤 {result["project_leader"]}</span>'
-    if result.get('project_reviewer'):
-        collaboration_html += f'<span class="expert-indicator" title="Project Reviewer">✅ {result["project_reviewer"]}</span>'
-    
     st.markdown(f"""
-    <div class="project-title">
-        #{rank} {project_name}
-        <div class="collaboration-indicators">
-            {collaboration_html}
+    <div style="margin-left: 1rem;">
+        <div style="font-size: 0.875rem; font-weight: 600; color: #3B82F6; margin-bottom: 0.5rem; font-family: 'SF Mono', Monaco, monospace;">
+            {project_number}
         </div>
+        <h2 style="font-size: 1.5rem; font-weight: 700; color: #0F172A; margin: 0 0 0.75rem 0; line-height: 1.3;">
+            {project_name}
+        </h2>
     </div>
     """, unsafe_allow_html=True)
     
@@ -734,51 +780,134 @@ def render_enhanced_result_card(result: Dict[str, Any], query: str, rank: int) -
         col1, col2 = st.columns([1, 3])
         
         with col1:
-            similarity = result.get('similarity_score', 0)
+            # Trust Score as Progress Bar (React-style - NO EMOJIS)
+            trust_score = result.get('trust_score', 0) * 100  # Convert to percentage
+            
+            # Color coding based on score
+            if trust_score >= 90:
+                bar_color = "linear-gradient(90deg, #10B981 0%, #059669 100%)"  # Green
+                bar_label = "Excellent"
+            elif trust_score >= 75:
+                bar_color = "linear-gradient(90deg, #3B82F6 0%, #2563EB 100%)"  # Blue
+                bar_label = "Good"
+            elif trust_score >= 60:
+                bar_color = "linear-gradient(90deg, #F59E0B 0%, #D97706 100%)"  # Orange
+                bar_label = "Fair"
+            else:
+                bar_color = "linear-gradient(90deg, #EF4444 0%, #DC2626 100%)"  # Red
+                bar_label = "Needs Review"
+            
             st.markdown(f"""
-            <div class="similarity-score">
-                Score: {similarity:.3f}
+            <div style="margin-bottom: 1rem;">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
+                    <span style="font-size: 0.75rem; font-weight: 600; color: #64748B; text-transform: uppercase; letter-spacing: 0.5px;">Trust Score</span>
+                    <span style="font-size: 1rem; font-weight: 700; color: #3B82F6;">{trust_score:.0f}%</span>
+                </div>
+                <div style="width: 100%; height: 12px; background: #E2E8F0; border-radius: 6px; overflow: hidden; position: relative;">
+                    <div style="height: 100%; width: {trust_score}%; background: {bar_color}; border-radius: 6px; transition: width 0.8s ease;"></div>
+                </div>
+                <div style="text-align: center; font-size: 0.75rem; color: #64748B; margin-top: 0.25rem;">{bar_label}</div>
             </div>
             """, unsafe_allow_html=True)
         
         with col2:
-            # Trust badges
-            doc_badges = create_trust_badges(result)
-            if doc_badges:
-                badge_html = ""
-                for badge in doc_badges:
-                    color_class = f"badge-{badge.get('color', 'blue')}"
-                    icon = badge.get('icon', '')
-                    text = badge.get('text', '')
-                    badge_html += f'<span class="trust-badge {color_class}">{icon} {text}</span>'
-                st.markdown(badge_html, unsafe_allow_html=True)
+            # Similarity Score as Progress Bar (React-style)
+            similarity = result.get('similarity_score', 0) * 100  # Convert to percentage
+            
+            st.markdown(f"""
+            <div style="margin-bottom: 1rem;">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
+                    <span style="font-size: 0.75rem; font-weight: 600; color: #64748B; text-transform: uppercase; letter-spacing: 0.5px;">Relevance</span>
+                    <span style="font-size: 1rem; font-weight: 700; color: #10B981;">{similarity:.0f}%</span>
+                </div>
+                <div style="width: 100%; height: 12px; background: #E2E8F0; border-radius: 6px; overflow: hidden; position: relative;">
+                    <div style="height: 100%; width: {similarity}%; background: linear-gradient(90deg, #10B981 0%, #059669 100%); border-radius: 6px; transition: width 0.8s ease;"></div>
+                </div>
+                <div style="text-align: center; font-size: 0.75rem; color: #64748B; margin-top: 0.25rem;">Match Quality</div>
+            </div>
+            """, unsafe_allow_html=True)
         
-        # Metadata in clean columns instead of HTML
-        st.markdown("**📋 Project Details**")
+        # Professional Metadata Grid (React-style)
+        st.markdown("""
+        <div style="background: #F8FAFC; padding: 1.5rem; border-radius: 12px; border: 1px solid #F1F5F9; margin: 1rem 0;">
+        """, unsafe_allow_html=True)
         
-        col1, col2, col3 = st.columns(3)
+        col1, col2, col3, col4 = st.columns(4)
         
         with col1:
-            if result.get('project_number'):
-                st.markdown(f"**Project Number:** {result.get('project_number')}")
-            if result.get('program_region'):
-                st.markdown(f"**Region:** {result.get('program_region')}")
-            if result.get('category'):
-                st.markdown(f"**Category:** {result.get('category')}")
+            st.markdown(f"""
+            <div style="margin-bottom: 0.75rem;">
+                <div style="font-size: 0.75rem; font-weight: 600; color: #64748B; text-transform: uppercase; margin-bottom: 0.25rem;">👤 Client</div>
+                <div style="font-size: 0.95rem; color: #0F172A; font-weight: 600;">{result.get('client', 'N/A')}</div>
+            </div>
+            """, unsafe_allow_html=True)
+            
+            st.markdown(f"""
+            <div>
+                <div style="font-size: 0.75rem; font-weight: 600; color: #64748B; text-transform: uppercase; margin-bottom: 0.25rem;">📍 Region</div>
+                <div style="font-size: 0.95rem; color: #0F172A; font-weight: 600;">{result.get('program_region', 'N/A')}</div>
+            </div>
+            """, unsafe_allow_html=True)
         
         with col2:
-            if result.get('client'):
-                st.markdown(f"**Client:** {result.get('client')}")
-            if result.get('project_leader'):
-                st.markdown(f"**Project Leader:** {result.get('project_leader')}")
-            if result.get('project_reviewer'):
-                st.markdown(f"**Project Reviewer:** {result.get('project_reviewer')}")
+            st.markdown(f"""
+            <div style="margin-bottom: 0.75rem;">
+                <div style="font-size: 0.75rem; font-weight: 600; color: #64748B; text-transform: uppercase; margin-bottom: 0.25rem;">📅 Timeline</div>
+                <div style="font-size: 0.95rem; color: #0F172A; font-weight: 600;">{result.get('phase', 'N/A')}</div>
+            </div>
+            """, unsafe_allow_html=True)
+            
+            st.markdown(f"""
+            <div>
+                <div style="font-size: 0.75rem; font-weight: 600; color: #64748B; text-transform: uppercase; margin-bottom: 0.25rem;">💰 Budget</div>
+                <div style="font-size: 0.95rem; color: #0F172A; font-weight: 600;">{result.get('budget', 'N/A')}</div>
+            </div>
+            """, unsafe_allow_html=True)
         
         with col3:
-            if result.get('lead_disciplines'):
-                st.markdown(f"**Lead Disciplines:** {result.get('lead_disciplines')}")
-            if result.get('trust_score'):
-                st.markdown(f"**Trust Score:** {result.get('trust_score', 0):.2f}/1.00")
+            st.markdown(f"""
+            <div style="margin-bottom: 0.75rem;">
+                <div style="font-size: 0.75rem; font-weight: 600; color: #64748B; text-transform: uppercase; margin-bottom: 0.25rem;">🎯 Category</div>
+                <div style="font-size: 0.95rem; color: #0F172A; font-weight: 600;">{result.get('category', 'N/A')}</div>
+            </div>
+            """, unsafe_allow_html=True)
+            
+            disciplines = result.get('lead_disciplines', 'N/A')
+            st.markdown(f"""
+            <div>
+                <div style="font-size: 0.75rem; font-weight: 600; color: #64748B; text-transform: uppercase; margin-bottom: 0.25rem;">🔧 Disciplines</div>
+                <div style="font-size: 0.85rem; color: #0F172A; font-weight: 500;">{disciplines}</div>
+            </div>
+            """, unsafe_allow_html=True)
+        
+        with col4:
+            # Status Badge
+            status = result.get('status', 'Active')
+            if status == 'Active':
+                status_color = "#D1FAE5"
+                status_text_color = "#065F46"
+            elif status == 'Completed':
+                status_color = "#DBEAFE"
+                status_text_color = "#1E40AF"
+            else:
+                status_color = "#FEF3C7"
+                status_text_color = "#92400E"
+            
+            st.markdown(f"""
+            <div style="text-align: center; margin-top: 1rem;">
+                <div style="
+                    padding: 0.5rem 1rem;
+                    background: {status_color};
+                    color: {status_text_color};
+                    border-radius: 20px;
+                    font-size: 0.875rem;
+                    font-weight: 600;
+                    display: inline-block;
+                ">{status}</div>
+            </div>
+            """, unsafe_allow_html=True)
+        
+        st.markdown("</div>", unsafe_allow_html=True)
         
         # Project snippet
         snippet = result.get('snippet', '')
@@ -854,32 +983,45 @@ def render_enhanced_result_card(result: Dict[str, Any], query: str, rank: int) -
                 rel_time = get_relative_time(modified_date)
                 st.caption(f"📅 Modified {rel_time} • 💾 {format_file_size(file_size)}")
         
-        # Lesson learned input
-        if st.session_state.get(f'show_lesson_{result["id"]}', False):
-            with st.expander("💡 Add Lesson Learned", expanded=True):
-                lesson_text = st.text_area(
-                    "What did you learn from this project?",
-                    key=f"lesson_input_{result['id']}",
-                    placeholder="Share insights, best practices, or lessons learned..."
-                )
-                
-                col_save, col_cancel = st.columns(2)
-                with col_save:
-                    if st.button("💾 Save Lesson", key=f"save_lesson_{result['id']}"):
-                        if lesson_text.strip():
-                            db = get_database()
-                            db.store_feedback(result['id'], st.session_state.get('last_query', ''), 'lesson', lesson_text.strip())
-                            st.success("✅ Lesson saved!")
-                            st.session_state[f'show_lesson_{result["id"]}'] = False
-                            st.rerun()
-                        else:
-                            st.warning("Please enter a lesson learned")
-                
-                with col_cancel:
-                    if st.button("❌ Cancel", key=f"cancel_lesson_{result['id']}"):
-                        st.session_state[f'show_lesson_{result["id"]}'] = False
-                        st.rerun()
+        # Professional Lesson Learned Input (React-style - One Line at Bottom)
+        st.markdown("""
+        <div style="margin-top: 1.5rem; padding-top: 1.5rem; border-top: 1px solid #E2E8F0;">
+            <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.75rem;">
+                <span style="font-size: 1rem; color: #F59E0B;">💡</span>
+                <span style="font-size: 0.875rem; font-weight: 600; color: #475569; text-transform: uppercase; letter-spacing: 0.5px;">
+                    ADD LESSON LEARNED / DECISION
+                </span>
+            </div>
+        </div>
+        """, unsafe_allow_html=True)
         
+        col_input, col_button = st.columns([4, 1])
+        
+        with col_input:
+            lesson_text = st.text_input(
+                "Lesson",
+                key=f"lesson_input_{result['id']}",
+                placeholder="Share a key insight or decision from this project...",
+                label_visibility="collapsed"
+            )
+        
+        with col_button:
+            if st.button("➕ Add Lesson", key=f"add_lesson_{result['id']}", use_container_width=True):
+                if lesson_text.strip():
+                    db = get_database()
+                    # Auto-tag with project metadata
+                    phase = result.get('phase', 'Unknown')
+                    leader = result.get('project_leader', 'Unknown')
+                    tagged_lesson = f"[{phase}] {lesson_text.strip()} - {leader}"
+                    db.store_feedback(result['id'], st.session_state.get('last_query', ''), 'lesson', tagged_lesson)
+                    st.success("✅ Lesson saved and tagged!")
+                    st.session_state[f'lesson_input_{result["id"]}'] = ""
+                    st.rerun()
+                else:
+                    st.warning("Please enter a lesson")
+        
+        # Close card container
+        st.markdown("</div>", unsafe_allow_html=True)
         st.markdown("---")
 
 def apply_filters(projects: List[Dict], filters: Dict) -> List[Dict]:
@@ -1159,13 +1301,20 @@ def main():
         
         st.markdown("---")
     
-    # Header
+    # Enhanced Professional Header (React-style)
     st.markdown("""
     <div class="main-header">
-        <h1>🔍 Tonkin Knowledge Finder</h1>
-        <p style="font-size: 1.2rem; margin: 0; opacity: 0.9;">
-            Find trusted past projects using AI-powered semantic search
-        </p>
+        <div style="display: flex; align-items: center; gap: 1.5rem;">
+            <div style="font-size: 3rem;">🗄️</div>
+            <div>
+                <h1 style="margin: 0; font-size: 2.5rem; font-weight: 800; letter-spacing: -0.5px;">
+                    Tonkin Knowledge Finder
+                </h1>
+                <p style="font-size: 1.125rem; margin: 0.5rem 0 0 0; opacity: 0.95; font-weight: 500;">
+                    AI-Powered Project Intelligence & Expertise Discovery
+                </p>
+            </div>
+        </div>
     </div>
     """, unsafe_allow_html=True)
     
@@ -1352,43 +1501,64 @@ def main():
                     st.error(f"❌ Search error: {str(e)}")
                     st.session_state.search_results = []
         
-        # Display results
+        # Display results with React-style instant feedback
         if st.session_state.search_results:
             results = st.session_state.search_results
             query = st.session_state.last_query
+            total_indexed = len(all_projects)
             
-            st.markdown(f"## 📋 Search Results ({len(results)} found)")
+            # React-Style Instant Feedback Stats Bar
+            st.markdown(f"""
+            <div style="
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                padding: 1rem 1.5rem;
+                background: white;
+                border-radius: 12px;
+                margin: 1.5rem 0;
+                box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+                border: 1px solid #E2E8F0;
+            ">
+                <div style="display: flex; align-items: center; gap: 0.75rem;">
+                    <div style="font-size: 1.5rem; color: #10B981;">✅</div>
+                    <div>
+                        <div style="font-size: 1.25rem; font-weight: 700; color: #0F172A;">{len(results)}</div>
+                        <div style="font-size: 0.875rem; color: #64748B; font-weight: 500;">Results Found</div>
+                    </div>
+                </div>
+                
+                <div style="display: flex; align-items: center; gap: 0.5rem;">
+                    <span style="font-weight: 500; color: #475569;">Searching for:</span>
+                    <span style="font-weight: 700; color: #3B82F6;">"{query}"</span>
+                </div>
+                
+                <div style="display: flex; align-items: center; gap: 0.75rem;">
+                    <div style="font-size: 1.5rem; color: #64748B;">📊</div>
+                    <div>
+                        <div style="font-size: 1.25rem; font-weight: 700; color: #0F172A;">{total_indexed}</div>
+                        <div style="font-size: 0.875rem; color: #64748B; font-weight: 500;">Indexed Projects</div>
+                    </div>
+                </div>
+            </div>
+            """, unsafe_allow_html=True)
             
             if len(results) > 0:
-                st.success(f"Found **{len(results)}** relevant projects for '*{query}*'")
-                
-                # Sort options
+                # Sort options (compact)
                 sort_option = st.selectbox(
                     "📊 Sort by:",
-                    ["Relevance (similarity)", "Trust Score ⭐", "Date (newest first) 📅", "Project Name 📝"],
-                    help="Choose how to order the results"
+                    ["Relevance (similarity)", "Trust Score", "Date (newest)", "Project Name"],
+                    help="Choose how to order the results",
+                    label_visibility="collapsed"
                 )
                 
                 # Apply sorting
-                if sort_option.startswith("Trust Score"):
+                if "Trust" in sort_option:
                     results = sorted(results, key=lambda x: x.get('trust_score', 0), reverse=True)
-                elif sort_option.startswith("Date"):
+                elif "Date" in sort_option:
                     results = sorted(results, key=lambda x: x.get('modified_date', ''), reverse=True)
-                elif sort_option.startswith("Project Name"):
+                elif "Name" in sort_option:
                     results = sorted(results, key=lambda x: x.get('project_name', ''))
-                
-                # Results summary
-                avg_score = sum(r.get('similarity_score', 0) for r in results) / len(results)
-                avg_trust = sum(r.get('trust_score', 0) for r in results) / len(results)
-                
-                col1, col2, col3 = st.columns(3)
-                with col1:
-                    st.metric("Avg Similarity", f"{avg_score:.3f}")
-                with col2:
-                    st.metric("Avg Trust Score", f"{avg_trust:.2f}")
-                with col3:
-                    unique_regions = len(set(r.get('program_region') for r in results))
-                    st.metric("Regions Found", unique_regions)
                 
                 st.markdown("---")
                 

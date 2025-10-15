@@ -22,7 +22,7 @@ st.set_page_config(
     page_title="Tonkin Knowledge Finder | AI-Powered Project Intelligence",
     page_icon="🗄️",
     layout="wide",
-    initial_sidebar_state="expanded",  # Sidebar is expanded to show navigation
+    initial_sidebar_state="expanded",  # Show filters by default
     menu_items={'Get Help': None, 'Report a bug': None, 'About': None}
 )
 
@@ -450,25 +450,6 @@ st.markdown("""
     }
     
     /* ═══════════════════════════════════════════════════════════ */
-    /* CONTACT BUTTONS - HOVER EFFECTS */
-    /* ═══════════════════════════════════════════════════════════ */
-    
-    a[href^="mailto:"] > div {
-        transition: all 0.2s ease !important;
-    }
-    
-    a[href^="mailto:"]:hover > div {
-        background: linear-gradient(135deg, #1E3A8A 0%, #1E293B 100%) !important;
-        transform: translateY(-2px) !important;
-        box-shadow: 0 4px 12px rgba(30, 64, 175, 0.35) !important;
-    }
-    
-    a[href^="mailto:"]:active > div {
-        transform: translateY(0) !important;
-        box-shadow: 0 2px 6px rgba(30, 64, 175, 0.25) !important;
-    }
-    
-    /* ═══════════════════════════════════════════════════════════ */
     /* LESSON SECTION */
     /* ═══════════════════════════════════════════════════════════ */
     
@@ -525,62 +506,6 @@ st.markdown("""
         background: #F8FAFC !important;
         border-right: 2px solid #E2E8F0 !important;
         padding: 1.5rem 1rem !important;
-    }
-    
-    /* Sidebar navigation - CLEAN MINIMALIST DESIGN */
-    [data-testid="stSidebarNav"] {
-        background: transparent !important;
-        padding: 0 !important;
-        margin: 0 0 2rem 0 !important;
-        border: none !important;
-    }
-    
-    [data-testid="stSidebarNav"] ul {
-        padding: 0 !important;
-        gap: 0.5rem !important;
-        display: flex !important;
-        flex-direction: column !important;
-    }
-    
-    /* Clean navigation links */
-    [data-testid="stSidebarNav"] a {
-        background: white !important;
-        color: #475569 !important;
-        font-weight: 600 !important;
-        padding: 1rem 1.25rem !important;
-        border-radius: 10px !important;
-        margin: 0 !important;
-        border: 2px solid #E2E8F0 !important;
-        transition: all 0.2s ease !important;
-        font-size: 0.95rem !important;
-        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05) !important;
-    }
-    
-    /* Hover state - subtle blue */
-    [data-testid="stSidebarNav"] a:hover {
-        background: #F1F5F9 !important;
-        border-color: #CBD5E1 !important;
-        color: #0F172A !important;
-        transform: translateX(2px) !important;
-    }
-    
-    /* Active page - solid navy blue */
-    [data-testid="stSidebarNav"] a[aria-current="page"] {
-        background: #1E40AF !important;
-        color: white !important;
-        border-color: #1E40AF !important;
-        font-weight: 700 !important;
-        box-shadow: 0 2px 8px rgba(30, 64, 175, 0.25) !important;
-    }
-    
-    /* Icons */
-    [data-testid="stSidebarNav"] a span {
-        font-size: 1.15rem !important;
-    }
-    
-    /* Remove any dividers */
-    [data-testid="stSidebarNav"] hr {
-        display: none !important;
     }
     
     [data-testid="stSidebar"] h1, 
@@ -856,7 +781,7 @@ def main():
         
         st.markdown("---")
         st.markdown("### 📊 Dashboard")
-        st.info("📊 **View detailed statistics and analytics**\n\nClick on **'📊 Dashboard'** in the sidebar menu (☰ at top left) to see:\n- Real project counts\n- Document statistics\n- Expert directory\n- Trust score analytics")
+        st.info("📊 View detailed statistics and analytics in the **Dashboard** page (sidebar navigation).")
         
         st.markdown("---")
         st.markdown("### 💡 Quick Tips")
@@ -1033,55 +958,17 @@ def main():
                     </div>
                     """, unsafe_allow_html=True)
                     
-                    # TEAM INFO WITH CONTACT BUTTONS
+                    # TEAM INFO
                     if result.get('project_leader'):
-                        leader_name = result.get('project_leader', 'N/A')
-                        reviewer_name = result.get('project_reviewer', 'N/A')
-                        
-                        # Contact buttons using Streamlit columns for better compatibility
                         st.markdown(f"""
                         <div style="background: linear-gradient(135deg, #EFF6FF 0%, #DBEAFE 100%); padding: 1.5rem; border-radius: 14px; margin: 1.5rem 0; border: 1px solid #BFDBFE;">
-                            <div style="font-weight: 700; color: #1E40AF; margin-bottom: 1rem; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.5px;">👥 Project Team</div>
+                            <div style="font-weight: 700; color: #1E40AF; margin-bottom: 0.6rem; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.5px;">👥 Project Team</div>
+                            <div style="color: #1E3A8A; font-size: 0.95rem; line-height: 1.6;">
+                                <strong>Project Leader:</strong> {result.get('project_leader', 'N/A')}<br>
+                                <strong>Reviewer:</strong> {result.get('project_reviewer', 'N/A')}
+                            </div>
                         </div>
                         """, unsafe_allow_html=True)
-                        
-                        # Project Leader Row
-                        col_leader_info, col_leader_btn = st.columns([3, 1])
-                        with col_leader_info:
-                            st.markdown(f"""
-                            <div style="background: white; padding: 0.75rem; border-radius: 10px; border: 1px solid #BFDBFE; margin-top: -1rem;">
-                                <div style="font-size: 0.75rem; font-weight: 600; color: #64748B; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 0.25rem;">Project Leader</div>
-                                <div style="font-size: 1rem; font-weight: 700; color: #0F172A;">{leader_name}</div>
-                            </div>
-                            """, unsafe_allow_html=True)
-                        with col_leader_btn:
-                            st.markdown(f"""
-                            <a href="mailto:{leader_name.lower().replace(' ', '.')}@example.com" style="text-decoration: none; display: block; margin-top: -1rem;">
-                                <div style="background: linear-gradient(135deg, #1E40AF 0%, #1E3A8A 100%); color: white; padding: 0.85rem 1rem; border-radius: 8px; font-weight: 600; font-size: 0.875rem; cursor: pointer; transition: all 0.2s ease; text-align: center; box-shadow: 0 2px 6px rgba(30, 64, 175, 0.25); height: 100%;">
-                                    ✉️ Contact
-                                </div>
-                            </a>
-                            """, unsafe_allow_html=True)
-                        
-                        # Reviewer Row
-                        col_reviewer_info, col_reviewer_btn = st.columns([3, 1])
-                        with col_reviewer_info:
-                            st.markdown(f"""
-                            <div style="background: white; padding: 0.75rem; border-radius: 10px; border: 1px solid #BFDBFE;">
-                                <div style="font-size: 0.75rem; font-weight: 600; color: #64748B; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 0.25rem;">Reviewer</div>
-                                <div style="font-size: 1rem; font-weight: 700; color: #0F172A;">{reviewer_name}</div>
-                            </div>
-                            """, unsafe_allow_html=True)
-                        with col_reviewer_btn:
-                            st.markdown(f"""
-                            <a href="mailto:{reviewer_name.lower().replace(' ', '.')}@example.com" style="text-decoration: none; display: block;">
-                                <div style="background: linear-gradient(135deg, #1E40AF 0%, #1E3A8A 100%); color: white; padding: 0.85rem 1rem; border-radius: 8px; font-weight: 600; font-size: 0.875rem; cursor: pointer; transition: all 0.2s ease; text-align: center; box-shadow: 0 2px 6px rgba(30, 64, 175, 0.25); height: 100%;">
-                                    ✉️ Contact
-                                </div>
-                            </a>
-                            """, unsafe_allow_html=True)
-                        
-                        st.markdown('<div style="margin-bottom: 1rem;"></div>', unsafe_allow_html=True)
                     
                     # LESSON INPUT SECTION
                     st.markdown("""
