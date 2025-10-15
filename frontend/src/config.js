@@ -7,7 +7,7 @@
 export const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:8000';
 
 // Set to true to use sample data instead of real API (for demo mode)
-export const USE_SAMPLE_DATA = false;
+export const USE_SAMPLE_DATA = false;  // Using real backend API
 
 export const API_ENDPOINTS = {
   search: `${API_URL}/api/search`,

@@ -82,6 +82,27 @@ function App() {
   const [selectedExpert, setSelectedExpert] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
+  const [totalProjects, setTotalProjects] = useState(6); // Default to 6, will update from API
+
+  // Fetch total project count on mount
+  useEffect(() => {
+    const fetchStats = async () => {
+      if (USE_SAMPLE_DATA) {
+        setTotalProjects(sampleProjects.length);
+        return;
+      }
+      
+      try {
+        const response = await axios.get(API_ENDPOINTS.stats);
+        setTotalProjects(response.data.total_projects || 0);
+      } catch (err) {
+        console.error('Failed to fetch stats:', err);
+        setTotalProjects(0);
+      }
+    };
+    
+    fetchStats();
+  }, []);
 
   // Real API search function
   const performSearch = async (query) => {
@@ -216,13 +237,13 @@ function App() {
         <SearchBar 
           onSearch={handleSearch}
           recentSearches={recentSearches}
-          totalProjects={sampleProjects.length}
+          totalProjects={totalProjects}
         />
         
         {hasSearched && (
           <StatsBar 
             resultCount={searchResults.length}
-            totalProjects={sampleProjects.length}
+            totalProjects={totalProjects}
             searchQuery={searchQuery}
           />
         )}
