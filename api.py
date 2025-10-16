@@ -30,7 +30,7 @@ app.add_middleware(
     allow_origins=[
         "http://localhost:3000",  # Local React dev
         "https://helpful-rabanadas-4fee85.netlify.app",  # Your specific Netlify URL
-        "https://*.netlify.app",  # Netlify deployments
+        "https://*.netlify.app",  # All Netlify deployments
         "https://*.vercel.app",   # Vercel deployments
     ],
     allow_credentials=True,
