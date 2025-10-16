@@ -29,9 +29,9 @@ app.add_middleware(
     CORSMiddleware,
     allow_origins=[
         "http://localhost:3000",  # Local React dev
+        "https://helpful-rabanadas-4fee85.netlify.app",  # Your specific Netlify URL
         "https://*.netlify.app",  # Netlify deployments
         "https://*.vercel.app",   # Vercel deployments
-        "*"  # Allow all for now (restrict in production)
     ],
     allow_credentials=True,
     allow_methods=["*"],
@@ -322,11 +322,13 @@ async def get_regions():
 
 if __name__ == "__main__":
     import uvicorn
+    import os
+    port = int(os.environ.get("PORT", 8000))
     uvicorn.run(
         "api:app",
         host="0.0.0.0",
-        port=8000,
-        reload=True,
+        port=port,
+        reload=False,  # Disable reload in production
         log_level="info"
     )
 
