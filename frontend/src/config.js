@@ -4,7 +4,7 @@
  */
 
 // Get API URL from environment variable or use default
-export const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:8000';
+export const API_URL = process.env.REACT_APP_API_URL || 'https://tonkin.onrender.com';
 
 // Set to true to use sample data instead of real API (for demo mode)
 export const USE_SAMPLE_DATA = false;  // Using real backend API
